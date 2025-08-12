@@ -448,13 +448,27 @@
   <!-- SCRIPT Onglets -->
   <script>
     function showTab(tabName, el){
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById(tabName)?.classList.add('active');
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      el?.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById(tabName)?.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    el?.classList.add('active');
+    // Mémorise l’onglet choisi
+    localStorage.setItem('activeTab', tabName);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<script>
+  // Ouvre l’onglet indiqué par #hash, sinon le dernier ouvert, sinon "presentation"
+  document.addEventListener('DOMContentLoaded', () => {
+    const hash = location.hash.replace('#','');
+    const saved = localStorage.getItem('activeTab');
+    const target = hash || saved || 'presentation';
+    const btn = [...document.querySelectorAll('.tab-btn')]
+      .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
+    showTab(target, btn);
+  });
+</script>
 
 </body>
 </html>
