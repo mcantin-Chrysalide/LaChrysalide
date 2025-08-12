@@ -25,7 +25,7 @@
     .tab-content{display:none}
     .tab-content.active{display:block}
     .tab-btn.active{background-color:#2d5016 !important;color:#fff !important}
-    .hero-section{background:linear-gradient(135deg,#2d5016 0%,#87a96b 50%,#a4c3a2 100%);min-height:48vh}
+    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%);min-height:48vh}
     .card-hover{transition:all .3s ease}
     .card-hover:hover{transform:translateY(-5px);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
     .nature-card{background:linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%);border:1px solid rgba(135,169,107,.2)}
@@ -40,10 +40,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-6">
         <div class="flex items-center space-x-4">
-          <src="logo.png"> -->
-          <div class="w-16 h-16 bg-gradient-to-br from-nature-green to-sage rounded-full flex items-center justify-center shadow-lg floating-element">
-            <span class="text-white text-2xl">🍃</span>
-          </div>
+          <!-- Logo : place ton fichier 'logo.png' à la racine du dépôt -->
+          <img src="logo.png" alt="Logo École Alternative La Chrysalide" class="w-16 h-16 rounded-full shadow-lg object-contain bg-cream p-2"/>
           <div>
             <h1 class="text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
               École Alternative La Chrysalide
@@ -74,25 +72,175 @@
       <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
         <div class="p-12 text-center text-white">
           <h2 class="text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
-          <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">Une école alternative où chaque enfant peut s’épanouir selon son rythme, dans un environnement bienveillant et connecté à la nature.</p>
+          <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Une école alternative où chaque enfant peut s’épanouir selon son rythme, dans un environnement bienveillant et connecté à la nature.
+          </p>
         </div>
       </section>
+
+      <!-- À propos -->
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-8">
           <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
         </div>
         <div class="bg-white/80 rounded-2xl p-8 shadow">
-          <p class="text-lg text-gray-700 mb-6">Notre philosophie : écris ici votre vision, vos valeurs et votre approche.</p>
+          <p class="text-lg text-gray-700 mb-6">
+            Présentez ici votre philosophie, vos valeurs et votre approche pédagogique.
+          </p>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
               <h3 class="font-semibold text-nature-green mb-2">Ce qui nous distingue</h3>
               <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Pédagogie active</li><li>Nature et communauté</li><li>Parcours personnalisés</li>
+                <li>Pédagogie active</li>
+                <li>Nature et communauté</li>
+                <li>Parcours personnalisés</li>
               </ul>
             </div>
             <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
               <h3 class="font-semibold text-nature-green mb-2">Engagement</h3>
-              <p class="text-gray-700">Ajoute ici vos engagements concrets envers les élèves et les familles.</p>
+              <p class="text-gray-700">Nos engagements concrets envers les élèves et les familles.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBRES DU PERSONNEL (cartes colorées) -->
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
+        </div>
+
+        <!-- Helper component style -->
+        <style>
+          .chip { @apply inline-block text-xs px-2 py-1 rounded-full bg-sage/20 text-nature-green font-medium; }
+        </style>
+
+        <!-- Direction -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Direction</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Marie-Claude Cantin</p>
+              <p class="text-gray-600">Direction</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enseignantes -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p>
+              <p class="text-gray-600">Enseignante au préscolaire 4-5 ans</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Rosalie Roy</p>
+              <p class="text-gray-600">Enseignante au préscolaire 4-5 ans</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p>
+              <p class="text-gray-600">Enseignante 1re-2e année</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p>
+              <p class="text-gray-600">Enseignante 2e-3e année</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p>
+              <p class="text-gray-600">Enseignante 4e-5e année</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Jordane Poiré</p>
+              <p class="text-gray-600">Enseignante en maternelles (20%)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spécialistes -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p>
+              <p class="text-gray-600">Enseignante en anglais</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p>
+              <p class="text-gray-600">Enseignante en éducation physique</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p>
+              <p class="text-gray-600">Enseignante de danse</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Régis Gravel</p>
+              <p class="text-gray-600">Enseignant d’art dramatique</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soutien -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Soutien</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Marie-Claire Larouche</p>
+              <p class="text-gray-600">TES</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Sylvie Pronovost</p>
+              <p class="text-gray-600">Secrétaire</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professionnelles -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Professionnelles</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Lennie Roy</p>
+              <p class="text-gray-600">Orthophoniste</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Véronique Charette</p>
+              <p class="text-gray-600">Orthopédagogue</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Érika Lessard</p>
+              <p class="text-gray-600">Travailleuse sociale</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Nathalie Péloquin</p>
+              <p class="text-gray-600">Psychoéducatrice</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service de garde -->
+        <div>
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Service de garde</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Mélanie Bérubé</p>
+              <p class="text-gray-600">Responsable</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Madelaine Gervais</p>
+              <p class="text-gray-600">Éducatrice</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">À venir</p>
+              <p class="text-gray-600">Éducatrice</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">À venir</p>
+              <p class="text-gray-600">Éducatrice</p>
+            </div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">À venir</p>
+              <p class="text-gray-600">Éducatrice</p>
             </div>
           </div>
         </div>
@@ -106,6 +254,7 @@
           <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
           <p class="text-gray-600">Complète les objectifs, sous-objectifs et moyens ci-dessous.</p>
         </div>
+        <!-- Objectifs à compléter, comme avant -->
         <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
           <h3 class="text-2xl font-bold text-nature-green mb-4">🌱 Objectif 1 — à définir</h3>
           <div class="grid md:grid-cols-2 gap-6">
@@ -168,6 +317,7 @@
           <p class="text-gray-600">Accès direct aux documents clés de l’école.</p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <!-- Lien à ajouter quand tu l'auras -->
           <a href="#" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
             <span class="text-2xl mr-3">📚</span>
             <div><h3 class="text-xl font-semibold text-nature-green mb-1">Projet éducatif</h3><p class="text-sm text-gray-600">Vision, orientations et objectifs.</p></div>
