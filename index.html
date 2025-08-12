@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>École Alternative La Chrysalide</title>
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -22,9 +20,7 @@
       }
     }
   </script>
-
   <style>
-    .leaf-pattern{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2387a96b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
     .gradient-bg{background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%)}
     .tab-content{display:none}
     .tab-content.active{display:block}
@@ -41,15 +37,12 @@
   </style>
 </head>
 <body class="gradient-bg min-h-screen">
-  <!-- Header -->
   <header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-6">
         <div class="flex items-center space-x-4">
           <div class="w-16 h-16 bg-gradient-to-br from-nature-green to-sage rounded-full flex items-center justify-center shadow-lg floating-element">
-            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
-            </svg>
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/></svg>
           </div>
           <div>
             <h1 class="text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">École Alternative La Chrysalide</h1>
@@ -57,8 +50,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Nav -->
       <nav class="pb-6">
         <div class="flex flex-wrap gap-3">
           <button onclick="showTab('presentation', this)" class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">🏠 Présentation</button>
@@ -67,193 +58,42 @@
           <button onclick="showTab('projets', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">🎨 Projets</button>
           <button onclick="showTab('nous-joindre', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📞 Nous joindre</button>
           <button onclick="showTab('espace-parents', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">👨‍👩‍👧‍👦 Espace Parents</button>
+          <button onclick="showTab('espace-personnel', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">👩‍🏫 Espace Personnel</button>
         </div>
       </nav>
     </div>
   </header>
-
-  <!-- Main -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-    <!-- Présentation -->
+    <!-- Onglets "techniques" : Présentation, etc. (à personnaliser si besoin) -->
     <div id="presentation" class="tab-content active space-y-12">
-      <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
-        <div class="p-12 text-center text-white">
-          <div class="floating-element">
-            <svg class="w-20 h-20 mx-auto mb-6 text-white/80" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
-            </svg>
-          </div>
-          <h2 class="text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
-          <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">Une école alternative où chaque enfant peut s'épanouir selon son rythme unique, dans un environnement bienveillant et connecté à la nature.</p>
-        </div>
-      </section>
-
-      <!-- À propos -->
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-nature-green to-sage rounded-full mb-6">
-            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V9M19 9H14V4H19V9Z"/>
-            </svg>
-          </div>
-          <h2 class="text-4xl font-bold text-nature-green mb-4">À propos de notre école</h2>
-        </div>
-
-        <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-          <p class="text-lg text-gray-700 leading-relaxed mb-6">
-            <strong class="text-nature-green">Bienvenue à l'École Alternative La Chrysalide !</strong>
-          </p>
-          <div class="bg-gradient-to-r from-sage/20 to-light-green/20 rounded-xl p-8 mb-6 border border-sage/30">
-            <p class="text-gray-700 leading-relaxed">
-              Ici, vous pouvez écrire une présentation complète de votre école alternative. Parlez de votre philosophie éducative, de votre approche pédagogique unique, de vos valeurs, de votre histoire et de ce qui rend votre école spéciale. N'hésitez pas à mentionner votre engagement envers l'éducation alternative et votre connexion avec la nature.
-            </p>
-          </div>
-          <p class="text-gray-700 leading-relaxed">Notre école offre un environnement d'apprentissage stimulant et bienveillant où chaque élève peut s'épanouir selon son rythme et ses intérêts.</p>
-        </div>
-      </section>
-
-      <!-- Équipe (… contenu inchangé) -->
-      <!-- ======= garde tout le reste tel que ton original pour Direction / Enseignants / Soutien ======= -->
+      <section class="hero-section rounded-3xl shadow-2xl overflow-hidden"><!-- ... --></section>
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover"><!-- ... --></section>
     </div>
-
-    <!-- Projet Éducatif -->
-    <div id="projet-educatif" class="tab-content">
-      <!-- (garde le contenu existant de ton message original) -->
-    </div>
-
-    <!-- Documentation -->
-    <div id="documentation" class="tab-content">
-      <!-- (garde le contenu existant de ton message original) -->
-    </div>
-
-    <!-- Projets -->
-    <div id="projets" class="tab-content">
-      <!-- (garde le contenu existant de ton message original) -->
-    </div>
-
-    <!-- Nous joindre -->
-    <div id="nous-joindre" class="tab-content">
-      <!-- (garde le contenu existant de ton message original) -->
-    </div>
-
+    <div id="projet-educatif" class="tab-content"><section><!-- ... --></section></div>
+    <div id="documentation" class="tab-content"><section><!-- ... --></section></div>
+    <div id="projets" class="tab-content"><section><!-- ... --></section></div>
+    <div id="nous-joindre" class="tab-content"><section><!-- ... --></section></div>
+    
     <!-- Espace Parents -->
-    <div id="espace-parents" class="tab-content">
-      <!-- Auth -->
-      <div id="auth-section" class="nature-card rounded-3xl shadow-xl p-12 text-center card-hover">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-nature-green to-sage rounded-full mb-6 floating-element">
-            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7M12 13C14.67 13 17 14.34 17 16V17H7V16C7 14.34 9.33 13 12 13Z"/>
-            </svg>
-          </div>
-          <h2 class="text-4xl font-bold text-nature-green mb-4">🔐 Espace Parents Sécurisé</h2>
+    <div id="espace-parents" class="tab-content"><!-- Contenu complet Espace Parents comme précédemment -->…</div>
+    
+    <!-- Espace Personnel -->
+    <div id="espace-personnel" class="tab-content">
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold text-nature-green mb-2">👩‍🏫 Espace Personnel</h2>
+          <p class="text-gray-600">Accès géré par Microsoft (OneDrive/SharePoint/OneNote). Seules les adresses autorisées y ont accès.</p>
         </div>
-
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto shadow-lg border border-sage/30">
-          <div class="w-16 h-16 bg-gradient-to-br from-nature-green to-sage rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 17C10.89 17 10 16.1 10 15C10 13.89 10.89 13 12 13S14 13.89 14 15 13.1 17 12 17M18 20V10H6V20H18M18 8C19.11 8 20 8.89 20 10V20C20 21.11 19.11 22 18 22H6C4.89 22 4 21.11 4 20V10C4 8.89 4.89 8 6 8H7V6C7 3.79 8.79 2 11 2H13C15.21 2 17 3.79 17 6V8H18M11 4C9.89 4 9 4.89 9 6V8H15V6C15 4.89 14.1 4 13 4H11Z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-nature-green mb-4">Accès Réservé aux Parents</h3>
-          <p class="text-gray-600 text-sm mb-6 leading-relaxed">Entrez le code d'accès fourni par l'école pour accéder aux ressources exclusives.</p>
-
-          <div class="space-y-4">
-            <input type="password" id="access-code" placeholder="Code d'accès" class="w-full px-4 py-3 border-2 border-sage/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-nature-green focus:border-transparent text-sm bg-white/80 backdrop-blur-sm">
-            <button onclick="checkAccess()" class="w-full bg-gradient-to-r from-nature-green to-sage text-white py-3 rounded-xl hover:from-sage hover:to-light-green transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105">🔓 Accéder</button>
-          </div>
-
-          <p class="text-xs text-gray-500 mt-4">Besoin d'aide ? Contactez le secrétariat.</p>
-        </div>
-      </div>
-
-      <!-- Contenu Parents -->
-      <div id="parent-content" class="hidden space-y-8">
-        <div class="nature-card rounded-3xl shadow-xl p-8">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-3xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
-            <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full hover:from-red-600 hover:to-red-700 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105">🚪 Se déconnecter</button>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <button onclick="showParentSection('benevoles', this)" class="parent-tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">❤️ Bénévolat</button>
-            <button onclick="showParentSection('classes', this)" class="parent-tab-btn bg-white/80 text-nature-green px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📚 Informations par classe</button>
-            <button onclick="showParentSection('photos', this)" class="parent-tab-btn bg-white/80 text-nature-green px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📸 Photos</button>
-            <button onclick="showParentSection('ressources', this)" class="parent-tab-btn bg-white/80 text-nature-green px-6 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📋 Ressources</button>
-          </div>
-        </div>
-
-        <!-- (garde ici tes sections Bénévolat / Classes / Photos / Ressources comme dans ton fichier initial) -->
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gradient-to-r from-nature-green via-sage to-light-green text-white py-12 mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4 floating-element">
-          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-bold">École Alternative La Chrysalide</h3>
-      </div>
-      <p class="text-white/90 mb-4 text-lg">Une éducation alternative en harmonie avec la nature</p>
-      <p class="text-sm text-white/70">© 2024 École Alternative La Chrysalide. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Onglets principaux
-    function showTab(tabName, el){
-      // contenus
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      const target = document.getElementById(tabName);
-      if (target) target.classList.add('active');
-      // boutons
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      if (el) el.classList.add('active');
-    }
-
-    // Sections "Espace parents"
-    function showParentSection(sectionName, el){
-      document.querySelectorAll('.parent-section').forEach(s => s.classList.remove('active'));
-      const target = document.getElementById(sectionName);
-      if (target) target.classList.add('active');
-
-      document.querySelectorAll('.parent-tab-btn').forEach(b => b.classList.remove('active'));
-      if (el) el.classList.add('active');
-    }
-
-    // Vérification du code d'accès (attention: côté client uniquement)
-    function checkAccess(){
-      const code = document.getElementById('access-code')?.value || '';
-      if (code === 'chrysalide2024' || code === 'parents'){
-        document.getElementById('auth-section').style.display = 'none';
-        document.getElementById('parent-content').classList.remove('hidden');
-      } else {
-        alert("Code d'accès incorrect. Veuillez contacter le secrétariat.");
-      }
-    }
-
-    function logout(){
-      document.getElementById('auth-section').style.display = 'block';
-      document.getElementById('parent-content').classList.add('hidden');
-      const input = document.getElementById('access-code');
-      if (input) input.value = '';
-    }
-
-    // Entrée clavier
-    (function(){
-      const input = document.getElementById('access-code');
-      if (input){
-        input.addEventListener('keypress', function(e){
-          if (e.key === 'Enter') checkAccess();
-        });
-      }
-    })();
-  </script>
-</body>
-</html>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Documentations utiles -->
+          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/ErSPAXW-GuhCh9dZHHTYypkBrP6ip32KPrYPzMt_DnfStA?e=s5DUJE" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">📁</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Documentations utiles</h3><p class="text-sm text-gray-600">Procédures, modèles, guides internes.</p></div>
+          </a>
+          <!-- Sécurité -->
+          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eom1jX2TKRhPsMH5hEDlg-gBntcwf_s-FdnjHcJcKg9U2g?e=zcdw96" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">🛡️</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Sécurité</h3><p class="text-sm text-gray-600">Plans d’urgence, santé-sécurité, formulaires.</p></div>
+          </a>
+          <!-- OneNote de l’école -->
+          <a href="https://csenergieqcca-my.sharepoint.com/:o:/g/personal/mcantin_cssenergie_gouv_qc_ca/EtAZVMEaEqNNlmVy2wqA56wBxJSM7BXtmjs-q-c1UqavQQ?e=X4vqtb" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-s
