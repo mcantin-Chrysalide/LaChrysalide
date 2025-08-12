@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>École Alternative La Chrysalide</title>
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -22,7 +20,6 @@
       }
     }
   </script>
-
   <style>
     .gradient-bg{background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%)}
     .tab-content{display:none}
@@ -43,7 +40,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-6">
         <div class="flex items-center space-x-4">
-          <!-- 🔁 LOGO : remplace le <div> par <img src="logo.png" class="w-16 h-16 rounded-full shadow-lg" alt="Logo"> -->
+          <!-- Ici, tu peux remplacer par ton logo via <img src="logo.png" class="w-16 h-16 rounded-full shadow-lg" alt="Logo"> -->
           <div class="w-16 h-16 bg-gradient-to-br from-nature-green to-sage rounded-full flex items-center justify-center shadow-lg floating-element">
             <span class="text-white text-2xl">🍃</span>
           </div>
@@ -55,8 +52,6 @@
           </div>
         </div>
       </div>
-
-      <!-- NAV -->
       <nav class="pb-6">
         <div class="flex flex-wrap gap-3">
           <button onclick="showTab('presentation', this)" class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">🏠 Présentation</button>
@@ -76,33 +71,23 @@
 
     <!-- PRÉSENTATION -->
     <div id="presentation" class="tab-content active space-y-12">
-      <!-- Héro -->
       <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
         <div class="p-12 text-center text-white">
           <h2 class="text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
-          <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Une école alternative où chaque enfant peut s’épanouir selon son rythme, dans un environnement bienveillant et connecté à la nature.
-          </p>
+          <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">Une école alternative où chaque enfant peut s’épanouir selon son rythme, dans un environnement bienveillant et connecté à la nature.</p>
         </div>
       </section>
-
-      <!-- À propos -->
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-8">
           <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
         </div>
         <div class="bg-white/80 rounded-2xl p-8 shadow">
-          <!-- ✍️ MODIFIE TON TEXTE ICI -->
-          <p class="text-lg text-gray-700 mb-6">
-            <strong class="text-nature-green">Notre philosophie :</strong> écris ici votre vision, vos valeurs et votre approche.
-          </p>
+          <p class="text-lg text-gray-700 mb-6">Notre philosophie : écris ici votre vision, vos valeurs et votre approche.</p>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
               <h3 class="font-semibold text-nature-green mb-2">Ce qui nous distingue</h3>
               <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Pédagogie active</li>
-                <li>Nature et communauté</li>
-                <li>Parcours personnalisés</li>
+                <li>Pédagogie active</li><li>Nature et communauté</li><li>Parcours personnalisés</li>
               </ul>
             </div>
             <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
@@ -121,18 +106,16 @@
           <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
           <p class="text-gray-600">Complète les objectifs, sous-objectifs et moyens ci-dessous.</p>
         </div>
-
-        <!-- Objectif 1 -->
         <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">🌱 Objectif 1 — <em>à définir</em></h3>
+          <h3 class="text-2xl font-bold text-nature-green mb-4">🌱 Objectif 1 — à définir</h3>
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Sous-objectifs</h4>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
                 <li>Sous-objectif 1.1</li><li>Sous-objectif 1.2</li><li>Sous-objectif 1.3</li>
               </ul>
             </div>
-            <div class="bg-warm-beige/40 rounded-xl p-6 border border-sage/30">
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Moyens</h4>
               <ul class="space-y-2 text-gray-700">
                 <li>• Moyen 1.1</li><li>• Moyen 1.2</li><li>• Moyen 1.3</li>
@@ -140,18 +123,16 @@
             </div>
           </div>
         </div>
-
-        <!-- Objectif 2 -->
         <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-light-green">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">🌿 Objectif 2 — <em>à définir</em></h3>
+          <h3 class="text-2xl font-bold text-nature-green mb-4">🌿 Objectif 2 — à définir</h3>
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Sous-objectifs</h4>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
                 <li>Sous-objectif 2.1</li><li>Sous-objectif 2.2</li><li>Sous-objectif 2.3</li>
               </ul>
             </div>
-            <div class="bg-warm-beige/40 rounded-xl p-6 border border-sage/30">
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Moyens</h4>
               <ul class="space-y-2 text-gray-700">
                 <li>• Moyen 2.1</li><li>• Moyen 2.2</li><li>• Moyen 2.3</li>
@@ -159,18 +140,16 @@
             </div>
           </div>
         </div>
-
-        <!-- Objectif 3 -->
         <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-sage">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">🌳 Objectif 3 — <em>à définir</em></h3>
+          <h3 class="text-2xl font-bold text-nature-green mb-4">🌳 Objectif 3 — à définir</h3>
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Sous-objectifs</h4>
-              <ul class="list-disc list-inside space-y-2 text-gray-700">
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
                 <li>Sous-objectif 3.1</li><li>Sous-objectif 3.2</li><li>Sous-objectif 3.3</li>
               </ul>
             </div>
-            <div class="bg-warm-beige/40 rounded-xl p-6 border border-sage/30">
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
               <h4 class="font-semibold text-nature-green mb-3">Moyens</h4>
               <ul class="space-y-2 text-gray-700">
                 <li>• Moyen 3.1</li><li>• Moyen 3.2</li><li>• Moyen 3.3</li>
@@ -178,20 +157,35 @@
             </div>
           </div>
         </div>
-
       </section>
     </div>
 
     <!-- DOCUMENTATION -->
     <div id="documentation" class="tab-content">
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <h2 class="text-3xl font-bold text-nature-green mb-6">Documentation</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Ajoute tes liens/documents ici -->
-          <a href="#" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover">📄 Règlements (à lier)</a>
-          <a href="#" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover">📝 Code de vie (à lier)</a>
-          <a href="#" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover">🧾 Formulaires (à lier)</a>
+        <div class="text-center mb-8">
+          <h2 class="text-4xl font-bold text-nature-green">Documentation</h2>
+          <p class="text-gray-600">Accès direct aux documents clés de l’école.</p>
         </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <a href="#" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">📚</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Projet éducatif</h3><p class="text-sm text-gray-600">Vision, orientations et objectifs.</p></div>
+          </a>
+          <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EXqQrF5WdGVNmnOlZo3seh8BE2ERnhP67w5VgYQG8k8T9g?e=ckRP9D" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">👨‍👩‍👧‍👦</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Guide de la participation des familles</h3><p class="text-sm text-gray-600">Rôles, responsabilités et collaboration.</p></div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">📝</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Code de vie</h3><p class="text-sm text-gray-600">Règles et attentes partagées.</p></div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+            <span class="text-2xl mr-3">🛡️</span>
+            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Plan de lutte</h3><p class="text-sm text-gray-600">Prévention et intervention.</p></div>
+          </a>
+        </div>
+        <p class="text-xs text-gray-500 mt-6">Pour changer un lien : remplace l’attribut <code>href="…"</code> par ton lien OneDrive/SharePoint.</p>
       </section>
     </div>
 
@@ -202,21 +196,18 @@
           <h2 class="text-4xl font-bold text-nature-green">Nos Projets</h2>
           <p class="text-gray-600">Duplique une carte pour ajouter un nouveau projet.</p>
         </div>
-
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- CARTE PROJET (duplique ce bloc) -->
           <div class="bg-white/80 rounded-2xl overflow-hidden shadow card-hover border border-sage/20">
             <div class="h-44" style="background:linear-gradient(135deg,#2d5016,#87a96b,#a4c3a2)"></div>
             <div class="p-6">
               <h3 class="text-xl font-semibold text-nature-green mb-2">🌱 Nom du projet</h3>
-              <p class="text-gray-700 text-sm mb-4">Brève description (activités, apprentissages…).</p>
+              <p class="text-gray-700 text-sm mb-4">Brève description (activités, apprentissages…)</p>
               <div class="flex justify-between text-xs">
                 <span class="bg-sage/20 text-sage px-3 py-1 rounded-full">Date / période</span>
                 <span class="text-gray-500">Classe / cycle</span>
               </div>
             </div>
           </div>
-          <!-- /CARTE PROJET -->
         </div>
       </section>
     </div>
@@ -226,70 +217,54 @@
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <h2 class="text-3xl font-bold text-nature-green mb-6">Nous joindre</h2>
         <div class="space-y-3 text-gray-700">
-          <p>📍 Adresse : (à compléter)</p>
-          <p>☎️ Téléphone : (à compléter)</p>
-          <p>✉️ Courriel : (à compléter)</p>
+          <p>📍 Adresse : à compléter</p>
+          <p>☎️ Téléphone : à compléter</p>
+          <p>✉️ Courriel : à compléter</p>
         </div>
       </section>
     </div>
 
-    <!-- ESPACE PARENTS (liens protégés par Microsoft) -->
+    <!-- ESPACE PARENTS -->
     <div id="espace-parents" class="tab-content">
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-6">
         <div class="text-center mb-4">
           <h2 class="text-4xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
-          <p class="text-gray-600 text-sm">L’accès aux dossiers/album est géré par Microsoft (comptes autorisés).</p>
+          <p class="text-gray-600 text-sm">Accès aux documents et au calendrier via Microsoft.</p>
         </div>
-
         <div class="space-y-4">
-          <a target="_blank" rel="noopener"
-             href="https://outlook.office365.com/owa/calendar/101870cf4fad419f8634d9c811cce3c7@cssenergie.gouv.qc.ca/35611e2acadf4a23aafccd5fe3757cb96000029279478307932/calendar.html"
-             class="inline-block bg-gradient-to-r from-nature-green to-sage text-white px-5 py-3 rounded-xl shadow">📅 Bénévolat – Calendrier</a>
-
-          <a target="_blank" rel="noopener"
-             href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EnsZBdleeOlOhEPZ7o50rkoBbj0dI1o9NOd_YCIWNwT8tw?e=McLoAy"
-             class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📷 Photos (OneDrive)</a>
-
-          <a target="_blank" rel="noopener"
-             href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eo3bFMybRxFOnJSZL8eGEJcB07YwQkAqVLbTPWKRbH8OeQ?e=F5YNHN"
-             class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📋 Ressources parents (OneDrive)</a>
+          <a href="https://outlook.office365.com/owa/calendar/101870cf4fad419f8634d9c811cce3c7@cssenergie.gouv.qc.ca/35611e2acadf4a23aafccd5fe3757cb96000029279478307932/calendar.html" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-nature-green to-sage text-white px-5 py-3 rounded-xl shadow">📅 Calendrier</a>
+          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EnsZBdleeOlOhEPZ7o50rkoBbj0dI1o9NOd_YCIWNwT8tw?e=McLoAy" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📷 Photos</a>
+          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eo3bFMybRxFOnJSZL8eGEJcB07YwQkAqVLbTPWKRbH8OeQ?e=F5YNHN" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📋 Ressources Parents</a>
         </div>
       </section>
     </div>
 
-    <!-- ESPACE PERSONNEL (liens internes Microsoft) -->
+    <!-- ESPACE PERSONNEL -->
     <div id="espace-personnel" class="tab-content">
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-10">
           <h2 class="text-4xl font-bold text-nature-green">👩‍🏫 Espace Personnel</h2>
-          <p class="text-gray-600 text-sm">Accès contrôlé par Microsoft (OneDrive / SharePoint / OneNote).</p>
+          <p class="text-gray-600 text-sm">Accès contrôlé via Microsoft.</p>
         </div>
-
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/ErSPAXW-GuhCh9dZHHTYypkBrP6ip32KPrYPzMt_DnfStA?e=s5DUJE" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">📁</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Documentations utiles</h3><p class="text-sm text-gray-600">Procédures, modèles, guides internes.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eom1jX2TKRhPsMH5hEDlg-gBntcwf_s-FdnjHcJcKg9U2g?e=zcdw96" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">🛡️</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Sécurité</h3><p class="text-sm text-gray-600">Plans d’urgence, santé-sécurité, formulaires.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:o:/g/personal/mcantin_cssenergie_gouv_qc_ca/EtAZVMEaEqNNlmVy2wqA56wBxJSM7BXtmjs-q-c1UqavQQ?e=X4vqtb" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">📒</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">OneNote de l’école</h3><p class="text-sm text-gray-600">Bloc-notes partagé de l’équipe.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EiFIUfpHmulPgNb3mEChYh4B1mycLPKR6hFnCMfVBtN23Q?e=fIftBK" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">👧👦</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Élèves</h3><p class="text-sm text-gray-600">Ressources pédagogiques, grilles, suivis.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eoz0_tEbbdhAkyDOuAfo2xIBZf6na3KiA19RNuwalSQ38g?e=XHMFBo" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">👩‍🏫</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Conseil des enseignants</h3><p class="text-sm text-gray-600">Documents et suivis du conseil.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EjyfibvbdXxPngfllidKNy4Bm-8juWbWn1DY-GDt5g--Dg?e=GmZflI" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">👨‍👩‍👦</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Conseil de famille</h3><p class="text-sm text-gray-600">Documents et communications.</p></div>
           </a>
-
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eij31JBdBYBLvUcnDitvusUBpHCyAPDwUPL2rrBiz62Z4A?e=7nnX9v" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
             <span class="text-2xl mr-3">📅</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Convocation</h3><p class="text-sm text-gray-600">Ordres du jour, convocations, PV.</p></div>
           </a>
@@ -304,9 +279,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="flex items-center justify-center mb-6">
         <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4 floating-element">
-          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
-          </svg>
+          <svg class="w-6 h-6 text-white" fill="currentColor"><path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/></svg>
         </div>
         <h3 class="text-2xl font-bold">École Alternative La Chrysalide</h3>
       </div>
@@ -315,20 +288,16 @@
     </div>
   </footer>
 
-  <!-- SCRIPT : gestion des onglets -->
+  <!-- SCRIPT Onglets -->
   <script>
     function showTab(tabName, el){
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      const target = document.getElementById(tabName);
-      if (target) target.classList.add('active');
-
+      document.getElementById(tabName)?.classList.add('active');
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      if (el) el.classList.add('active');
-
-      // Option : positionner en haut après changement d’onglet
+      el?.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+
 </body>
 </html>
-
