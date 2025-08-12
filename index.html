@@ -25,7 +25,7 @@
     .tab-content{display:none}
     .tab-content.active{display:block}
     .tab-btn.active{background-color:#2d5016 !important;color:#fff !important}
-    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%);min-height:48vh}
+    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%);min-height:44vh}
     .card-hover{transition:all .3s ease}
     .card-hover:hover{transform:translateY(-5px);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
     .nature-card{background:linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%);border:1px solid rgba(135,169,107,.2)}
@@ -46,7 +46,9 @@
             <h1 class="text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
               École Alternative La Chrysalide
             </h1>
-            <p class="text-sage text-sm italic">Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine</p>
+            <p class="text-sage text-sm italic">
+              Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine
+            </p>
           </div>
         </div>
       </div>
@@ -68,78 +70,64 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
     <!-- PRÉSENTATION -->
-<div id="presentation" class="tab-content active space-y-12">
-  <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
-    <div class="p-12 text-center text-white">
-      <h2 class="text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
-      
-      <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-        Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
-      </p>
-      
-      <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-        Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
-      </p>
-      
-      <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-        La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
-      </p>
-    </div>
-  </section>
-</div>
-
+    <div id="presentation" class="tab-content active space-y-12">
+      <!-- Héro -->
+      <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
+        <div class="p-10 text-center text-white">
+          <h2 class="text-4xl font-bold mb-4">Bienvenue à La Chrysalide</h2>
+          <p class="text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Une école alternative où chaque enfant peut s’épanouir selon son rythme, dans un environnement bienveillant et connecté à la nature.
+          </p>
+        </div>
       </section>
 
       <!-- À propos -->
-<section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-  <div class="text-center mb-8">
-    <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
-  </div>
-  <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+        <div class="text-center mb-8">
+          <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
+        </div>
+        <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
 
-    <!-- Mission -->
-    <div>
-      <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
-      <p class="text-lg text-gray-700">
-        Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.
-      </p>
-    </div>
+          <!-- Mission -->
+          <div>
+            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
+            <p class="text-lg text-gray-700">
+              Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.
+            </p>
+          </div>
 
-    <!-- Vision -->
-    <div>
-      <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
-      <p class="text-lg text-gray-700">
-        Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.
-      </p>
-    </div>
+          <!-- Vision -->
+          <div>
+            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
+            <p class="text-lg text-gray-700">
+              Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.
+            </p>
+          </div>
 
-    <!-- Valeurs + Encadré PARC -->
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- Valeurs -->
-      <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
-        <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
-        <ul class="list-disc list-inside text-gray-700 space-y-2">
-          <li><strong>Plaisir :</strong> Moteur essentiel de l'apprentissage. Le plaisir stimule la curiosité, l'engagement et la motivation intrinsèque des élèves.</li>
-          <li><strong>Autonomie :</strong> Encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
-          <li><strong>Respect :</strong> Respect des autres, de soi et de l'environnement.</li>
-          <li><strong>Coopération :</strong> Bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
-        </ul>
-      </div>
+          <!-- Valeurs + PARC -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+              <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li><strong>Plaisir :</strong> moteur essentiel de l'apprentissage; il stimule curiosité, engagement et motivation intrinsèque.</li>
+                <li><strong>Autonomie :</strong> encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
+                <li><strong>Respect :</strong> respect des autres, de soi et de l'environnement.</li>
+                <li><strong>Coopération :</strong> bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
+              </ul>
+            </div>
 
-      <!-- Encadré PARC -->
-      <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
-        <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
-        <p class="text-gray-700">
-          PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir.
-          Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.
-        </p>
-      </div>
-    </div>
+            <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
+              <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
+              <p class="text-gray-700">
+                PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir.
+                Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  </div>
-</section>
-
-      <!-- MEMBRES DU PERSONNEL -->
+      <!-- Membres du personnel -->
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-10">
           <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
@@ -160,12 +148,12 @@
         <div class="mb-8">
           <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Enseignante au préscolaire 4-5 ans</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Enseignante au préscolaire 4-5 ans</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">Enseignante 1re-2e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">Enseignante 2e-3e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">Enseignante 4e-5e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Enseignante en maternelles (20%)</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">1re-2e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">2e-3e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">4e-5e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Maternelles (20%)</p></div>
           </div>
         </div>
 
@@ -173,10 +161,10 @@
         <div class="mb-8">
           <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Enseignante en anglais</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Enseignante en éducation physique</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Enseignante de danse</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Enseignant d’art dramatique</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Anglais</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Éducation physique</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Danse</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Art dramatique</p></div>
           </div>
         </div>
 
@@ -214,106 +202,105 @@
       </section>
     </div>
 
-   <!-- PROJET ÉDUCATIF -->
-<div id="projet-educatif" class="tab-content">
-  <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-10">
-    <div class="text-center">
-      <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
-      <p class="text-gray-600">Orientations, objectifs, indicateurs et pistes d’action pour notre école.</p>
+    <!-- PROJET ÉDUCATIF -->
+    <div id="projet-educatif" class="tab-content">
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-10">
+        <div class="text-center">
+          <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
+          <p class="text-gray-600">Orientations, objectifs, indicateurs et pistes d’action pour notre école.</p>
+        </div>
+
+        <!-- Orientation 1 -->
+        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
+          <h3 class="text-2xl font-bold text-nature-green mb-2">🌱 Orientation 1</h3>
+          <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser l’apprentissage des élèves</p>
+          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en place des pratiques pédagogiques favorisant l'apprentissage actif des élèves dans la totalité des classes.</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>1.1 — 100% des enseignants utiliseront des stratégies d’apprentissage actif.</li>
+                <li>1.2 — 100% des élèves mèneront à terme divers projets (personnels, de groupe, entrepreneuriaux).</li>
+              </ul>
+            </div>
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Utilisation de la triangulation pour évaluer.</li>
+                <li>Formation des enseignants.</li>
+                <li>Autoévaluation par les élèves.</li>
+                <li>Rencontres collaboratives.</li>
+                <li>Temps de planification pour les enseignants.</li>
+                <li>Offrir des choix d’activités variés.</li>
+                <li>Enseignement de stratégies aux élèves.</li>
+                <li>Modelage de projets collectifs.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orientation 2 -->
+        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-light-green">
+          <h3 class="text-2xl font-bold text-nature-green mb-2">🌿 Orientation 2</h3>
+          <p class="text-lg font-semibold text-gray-800 mb-4">Assurer aux élèves et au personnel un milieu de vie sain et bienveillant</p>
+          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, renforcer les habiletés socio-émotionnelles de l'ensemble des élèves.</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>2.1 — Moyens enseignés pour favoriser l'autorégulation émotionnelle des élèves.</li>
+                <li>2.2 — Moyens préventifs pour diffuser, enseigner et appliquer le code de vie.</li>
+              </ul>
+            </div>
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Enseignement explicite des habiletés sociales et émotionnelles.</li>
+                <li>Enseigner des moyens d’autorégulation.</li>
+                <li>Favoriser le partenariat école-maison.</li>
+                <li>Formation du personnel.</li>
+                <li>Maintenir le conseil de famille.</li>
+                <li>Mise en place d’une démarche de résolution de conflits commune.</li>
+                <li>Ateliers par des organismes.</li>
+                <li>Utilisation de l’application Moozoom.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orientation 3 -->
+        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-sage">
+          <h3 class="text-2xl font-bold text-nature-green mb-2">🌳 Orientation 3</h3>
+          <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser la participation des parents à la vie de l'école</p>
+          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en pratique les principes de la coéducation dans l'école.</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>3.1 — 100% des parents participent activement à la vie de l'école (20 heures par famille minimum).</li>
+              </ul>
+            </div>
+            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Outils de suivi de la participation parentale.</li>
+                <li>Système de communication clair et efficace.</li>
+                <li>Banque de talents, ressources et intérêts.</li>
+                <li>Création d’un comité de coéducation.</li>
+                <li>Participation aux PM alternatifs.</li>
+                <li>Rencontre d’accueil des nouvelles familles.</li>
+                <li>Instaurer une culture d’accueil.</li>
+                <li>Définir les rôles des différents acteurs.</li>
+                <li>Maintien des comités existants.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <!-- Orientation 1 -->
-    <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
-      <h3 class="text-2xl font-bold text-nature-green mb-2">🌱 Orientation 1</h3>
-      <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser l’apprentissage des élèves</p>
-      <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en place des pratiques pédagogiques favorisant l'apprentissage actif des élèves dans la totalité des classes.</p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>1.1 — 100% des enseignants utiliseront des stratégies d’apprentissage actif.</li>
-            <li>1.2 — 100% des élèves mèneront à terme divers projets (personnels, de groupe, entrepreneuriaux).</li>
-          </ul>
-        </div>
-        <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>Utilisation de la triangulation pour évaluer.</li>
-            <li>Formation des enseignants.</li>
-            <li>Autoévaluation par les élèves.</li>
-            <li>Rencontres collaboratives.</li>
-            <li>Temps de planification pour les enseignants.</li>
-            <li>Offrir des choix d’activités variés.</li>
-            <li>Enseignement de stratégies aux élèves.</li>
-            <li>Modelage de projets collectifs.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Orientation 2 -->
-    <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-light-green">
-      <h3 class="text-2xl font-bold text-nature-green mb-2">🌿 Orientation 2</h3>
-      <p class="text-lg font-semibold text-gray-800 mb-4">Assurer aux élèves et au personnel un milieu de vie sain et bienveillant</p>
-      <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, renforcer les habiletés socio-émotionnelles de l'ensemble des élèves.</p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>2.1 — Moyens enseignés pour favoriser l'autorégulation émotionnelle des élèves.</li>
-            <li>2.2 — Moyens préventifs pour diffuser, enseigner et appliquer le code de vie.</li>
-          </ul>
-        </div>
-        <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>Enseignement explicite des habiletés sociales et émotionnelles.</li>
-            <li>Enseigner des moyens d’autorégulation.</li>
-            <li>Favoriser le partenariat école-maison.</li>
-            <li>Formation du personnel.</li>
-            <li>Maintenir le conseil de famille.</li>
-            <li>Mise en place d’une démarche de résolution de conflits commune.</li>
-            <li>Ateliers par des organismes.</li>
-            <li>Utilisation de l’application Moozoom.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Orientation 3 -->
-    <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-sage">
-      <h3 class="text-2xl font-bold text-nature-green mb-2">🌳 Orientation 3</h3>
-      <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser la participation des parents à la vie de l'école</p>
-      <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en pratique les principes de la coéducation dans l'école.</p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>3.1 — 100% des parents participent activement à la vie de l'école (20 heures par famille minimum).</li>
-          </ul>
-        </div>
-        <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-          <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li>Outils de suivi de la participation parentale.</li>
-            <li>Système de communication clair et efficace.</li>
-            <li>Banque de talents, ressources et intérêts.</li>
-            <li>Création d’un comité de coéducation.</li>
-            <li>Participation aux PM alternatifs.</li>
-            <li>Rencontre d’accueil des nouvelles familles.</li>
-            <li>Culture d’accueil instaurée.</li>
-            <li>Rôles des acteurs clairement définis.</li>
-            <li>Maintien des comités existants.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
 
     <!-- DOCUMENTATION -->
     <div id="documentation" class="tab-content">
@@ -340,17 +327,22 @@
             <div><h3 class="text-xl font-semibold text-nature-green mb-1">Plan de lutte</h3><p class="text-sm text-gray-600">Prévention et intervention.</p></div>
           </a>
         </div>
-        <p class="text-xs text-gray-500 mt-6">Pour modifier un lien : change l’attribut <code>href="…"</code>.</p>
       </section>
     </div>
 
     <!-- PROJETS -->
     <div id="projets" class="tab-content">
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-10">
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-8">
+        <div class="text-center">
           <h2 class="text-4xl font-bold text-nature-green">Nos Projets</h2>
-          <p class="text-gray-600">Duplique une carte pour ajouter un nouveau projet.</p>
         </div>
+
+        <!-- Intro des projets -->
+        <p class="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed">
+          À La Chrysalide, les élèves mènent des projets collectifs (classe/école) et des projets personnels qui donnent du sens aux apprentissages et développent créativité, collaboration et compétences concrètes. En menant un projet du début à la fin, l’élève apprend à planifier, persévérer, résoudre des problèmes et s’adapter aux imprévus — des habiletés essentielles pour la vie. Les projets cultivent aussi la confiance en soi et le plaisir d’apprendre, dans un cadre qui respecte le rythme et les forces de chacun.
+        </p>
+
+        <!-- Boîtes de projets -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-white/80 rounded-2xl overflow-hidden shadow card-hover border border-sage/20">
             <div class="h-44" style="background:linear-gradient(135deg,#2d5016,#87a96b,#a4c3a2)"></div>
@@ -363,6 +355,7 @@
               </div>
             </div>
           </div>
+          <!-- duplique ce bloc pour ajouter d'autres projets -->
         </div>
       </section>
     </div>
