@@ -28,7 +28,7 @@
     .tab-content{display:none}
     .tab-content.active{display:block}
     .tab-btn.active{background-color:#2d5016 !important;color:#fff !important}
-    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%);min-height:44vh}
+    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%)}
     .card-hover{transition:all .3s ease}
     .card-hover:hover{transform:translateY(-5px);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
     .nature-card{background:linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%);border:1px solid rgba(135,169,107,.2)}
@@ -40,6 +40,11 @@
       .floating-element { animation: none !important; }
       html:focus-within { scroll-behavior: auto; }
     }
+
+    /* Justifier le texte des paragraphes */
+    .text-justify { text-align: justify; text-justify: inter-word; }
+    /* Césure auto pour une belle justification (si supporté) */
+    .hyphens-auto { hyphens: auto; }
   </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -119,30 +124,35 @@
     <div id="presentation" class="tab-content active space-y-12"
          role="tabpanel" aria-labelledby="tab-presentation">
 
-      <!-- HERO avec image à gauche + texte à droite -->
+      <!-- HERO : image à gauche + colonne texte (petit + justifié) à droite -->
       <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
         <div class="p-8 md:p-12 text-white">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <!-- Photo à gauche -->
             <div>
-              <img src="main.jpg" alt="École Alternative La Chrysalide — vie scolaire"
-                   class="w-full h-64 md:h-[360px] object-cover rounded-2xl shadow-xl bg-white/10 border border-white/20"/>
+              <img src="./main.jpeg" alt="École Alternative La Chrysalide — vie scolaire"
+                   class="w-full h-64 md:h-[360px] object-cover object-[left_center] rounded-2xl shadow-xl bg-white/10 border border-white/20"/>
             </div>
-            <!-- Texte à droite -->
-            <div class="text-center md:text-left">
-              <h2 class="text-4xl md:text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
+            <!-- Texte à droite, aligné et justifié -->
+            <div class="md:pl-2">
+              <!-- Colonne : Titre + Paragraphes alignés sur la même marge -->
+              <div class="max-w-xl md:max-w-lg mx-auto md:mx-0">
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-3">
+                  Bienvenue à La Chrysalide
+                </h2>
 
-              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed">
-                Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
-              </p>
-
-              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed mt-4">
-                Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
-              </p>
-
-              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed mt-4">
-                La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
-              </p>
+                <div class="space-y-3 text-white/90 text-sm md:text-base leading-relaxed md:leading-normal text-justify hyphens-auto">
+                  <p>
+                    Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
+                  </p>
+                  <p>
+                    Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
+                  </p>
+                  <p>
+                    La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -433,12 +443,65 @@
     <!-- NOUS JOINDRE -->
     <div id="nous-joindre" class="tab-content"
          role="tabpanel" aria-labelledby="tab-nous-joindre" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <h2 class="text-3xl font-bold text-nature-green mb-6">Nous joindre</h2>
-        <div class="space-y-3 text-gray-700">
-          <p>📍 Adresse : 796 rue Réal, La Tuque, Québec, G9X 1X5</p>
-          <p>☎️ Téléphone : 819-523-7631</p>
-          <p>✉️ Courriel : chrysalide@cssenergie.gouv.qc.ca</p>
+      <section class="nature-card rounded-3xl shadow-2xl p-12 card-hover space-y-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-nature-green">Nous joindre</h2>
+        </div>
+
+        <!-- Coordonnées cliquables -->
+        <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20 space-y-3 text-gray-700">
+          <p>📍 Adresse :
+            <a class="underline"
+               href="https://www.google.com/maps/search/?api=1&query=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5"
+               target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l'adresse dans Google Maps">
+              796 rue Réal, La Tuque, Québec, G9X 1X5
+            </a>
+          </p>
+          <p>☎️ Téléphone : <a class="underline" href="tel:+18195237631" aria-label="Appeler l'école">819-523-7631</a></p>
+          <p>✉️ Courriel : <a class="underline" href="mailto:chrysalide@cssenergie.gouv.qc.ca" aria-label="Envoyer un courriel">chrysalide@cssenergie.gouv.qc.ca</a></p>
+        </div>
+
+        <!-- Mini-carte intégrée -->
+        <div class="bg-white/80 rounded-2xl p-2 shadow border border-sage/20">
+          <iframe
+            title="Carte - École Alternative La Chrysalide"
+            src="https://www.google.com/maps?q=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5&output=embed"
+            class="w-full h-64 rounded-xl"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Formulaire 'Nous écrire' -->
+        <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20">
+          <h3 class="text-2xl font-semibold text-nature-green mb-4">Nous écrire</h3>
+
+          <form id="contact-form" class="grid md:grid-cols-2 gap-4" novalidate>
+            <div class="col-span-1">
+              <label for="cf-nom" class="block text-sm text-gray-600 mb-1">Votre nom*</label>
+              <input id="cf-nom" name="nom" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Nom complet" />
+            </div>
+            <div class="col-span-1">
+              <label for="cf-email" class="block text-sm text-gray-600 mb-1">Votre courriel*</label>
+              <input id="cf-email" name="email" required class="w-full rounded-lg border border-sage/30 p-3" type="email" placeholder="adresse@exemple.com" />
+            </div>
+            <div class="col-span-2">
+              <label for="cf-sujet" class="block text-sm text-gray-600 mb-1">Sujet*</label>
+              <input id="cf-sujet" name="sujet" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Sujet de votre message" />
+            </div>
+            <div class="col-span-2">
+              <label for="cf-message" class="block text-sm text-gray-600 mb-1">Message*</label>
+              <textarea id="cf-message" name="message" required class="w-full rounded-lg border border-sage/30 p-3 h-32" placeholder="Votre message..."></textarea>
+            </div>
+            <div class="col-span-2 flex items-center justify-between">
+              <p class="text-xs text-gray-500">* Champs requis</p>
+              <button type="submit" class="bg-gradient-to-r from-nature-green to-sage text-white px-6 py-3 rounded-xl shadow hover:shadow-lg transition">
+                Envoyer
+              </button>
+            </div>
+          </form>
+
+          <p id="cf-feedback" class="mt-3 text-sm text-gray-600 hidden">Ouverture de votre application courriel…</p>
         </div>
       </section>
     </div>
@@ -549,6 +612,38 @@
         .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
       showTab(target, btn);
     });
+  </script>
+
+  <!-- SCRIPT Formulaire 'Nous écrire' -> mailto -->
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const nom = document.getElementById('cf-nom').value.trim();
+        const email = document.getElementById('cf-email').value.trim();
+        const sujet = document.getElementById('cf-sujet').value.trim();
+        const message = document.getElementById('cf-message').value.trim();
+
+        if(!nom || !email || !sujet || !message){
+          alert('Merci de remplir tous les champs obligatoires.');
+          return;
+        }
+
+        const to = 'chrysalide@cssenergie.gouv.qc.ca';
+        const subject = `[Site Web] ${sujet} — ${nom}`;
+        const bodyText = `Nom: ${nom}\nCourriel: ${email}\n\n${message}`;
+        const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
+        // Ouvre le client courriel
+        window.location.href = mailto;
+
+        // Petit feedback visuel
+        const fb = document.getElementById('cf-feedback');
+        if (fb) fb.classList.remove('hidden');
+      });
+    })();
   </script>
 
 </body>
