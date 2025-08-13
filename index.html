@@ -46,6 +46,9 @@
     /* Césure auto pour une belle justification (si supporté) */
     .hyphens-auto { hyphens: auto; }
   </style>
+
+  <!-- Préchargement de l'image du héros -->
+  <link rel="preload" as="image" href="main.jpeg">
 </head>
 <body class="gradient-bg min-h-screen">
 
@@ -54,7 +57,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-6">
         <div class="flex items-center space-x-4">
-          <!-- Logo : place ton fichier 'logo.png' à la racine du dépôt -->
+          <!-- Logo : place ton fichier 'logo.png' à la racine -->
           <img src="logo.png" alt="Logo École Alternative La Chrysalide" class="w-16 h-16 rounded-full shadow-lg object-contain bg-cream p-2"/>
           <div>
             <h1 class="text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
@@ -130,8 +133,14 @@
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <!-- Photo à gauche -->
             <div>
-              <img src="./main.jpg" alt="École Alternative La Chrysalide — vie scolaire"
-                   class="w-full h-64 md:h-[360px] object-cover object-[left_center] rounded-2xl shadow-xl bg-white/10 border border-white/20"/>
+              <img
+                src="main.jpeg"
+                alt="École Alternative La Chrysalide — vie scolaire"
+                width="1200" height="800"
+                loading="eager" decoding="async"
+                class="w-full h-64 md:h-[360px] object-cover object-[left_center] rounded-2xl shadow-xl bg-white/10 border border-white/20"
+                onerror="this.onerror=null; this.src='logo.png'; this.alt='Image indisponible — logo affiché';"
+              />
             </div>
             <!-- Texte à droite, aligné et justifié -->
             <div class="md:pl-2">
@@ -514,10 +523,29 @@
           <h2 class="text-4xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
           <p class="text-gray-600 text-sm">Accès aux documents et au calendrier via Microsoft.</p>
         </div>
+
+        <!-- Liens rapides -->
         <div class="space-y-4">
           <a href="https://outlook.office365.com/owa/calendar/101870cf4fad419f8634d9c811cce3c7@cssenergie.gouv.qc.ca/35611e2acadf4a23aafccd5fe3757cb96000029279478307932/calendar.html" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-nature-green to-sage text-white px-5 py-3 rounded-xl shadow">📅 Calendrier</a>
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EnsZBdleeOlOhEPZ7o50rkoBbj0dI1o9NOd_YCIWNwT8tw?e=McLoAy" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📷 Photos</a>
           <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eo3bFMybRxFOnJSZL8eGEJcB07YwQkAqVLbTPWKRbH8OeQ?e=F5YNHN" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📋 Ressources Parents</a>
+          <!-- Bouton vers le formulaire de présence (ancre + nouvel onglet) -->
+          <a href="#presence-ecole" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📝 Présence à l’école</a>
+          <a href="https://forms.office.com/r/MuhA3KnSxU" target="_blank" rel="noopener" class="inline-block text-nature-green underline">Ouvrir dans un nouvel onglet ↗</a>
+        </div>
+
+        <!-- Formulaire intégré -->
+        <div id="presence-ecole" class="bg-white/80 rounded-2xl p-4 shadow border border-sage/20 mt-4">
+          <h3 class="text-2xl font-semibold text-nature-green mb-3">📝 Présence à l’école</h3>
+          <div class="rounded-xl overflow-hidden">
+            <iframe width="640" height="480"
+              src="https://forms.office.com/r/MuhA3KnSxU?embed=true"
+              frameborder="0" marginwidth="0" marginheight="0"
+              style="border:none; max-width:100%; width:100%; height:70vh; max-height:100vh"
+              allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen
+              title="Formulaire - Présence à l'école">
+            </iframe>
+          </div>
         </div>
       </section>
     </div>
