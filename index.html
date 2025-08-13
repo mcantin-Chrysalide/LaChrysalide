@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>École Alternative La Chrysalide</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,6 +22,7 @@
       }
     }
   </script>
+
   <style>
     .gradient-bg{background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%)}
     .tab-content{display:none}
@@ -31,6 +34,12 @@
     .nature-card{background:linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%);border:1px solid rgba(135,169,107,.2)}
     .floating-element{animation:float 6s ease-in-out infinite}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    /* Accessibilité : réduire les animations si demandé */
+    @media (prefers-reduced-motion: reduce){
+      .floating-element { animation: none !important; }
+      html:focus-within { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -52,15 +61,52 @@
           </div>
         </div>
       </div>
-      <nav class="pb-6">
-        <div class="flex flex-wrap gap-3">
-          <button onclick="showTab('presentation', this)" class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">🏠 Présentation</button>
-          <button onclick="showTab('projet-educatif', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📚 Projet Éducatif</button>
-          <button onclick="showTab('documentation', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📄 Documentation</button>
-          <button onclick="showTab('projets', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">🎨 Projets</button>
-          <button onclick="showTab('nous-joindre', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📞 Nous joindre</button>
-          <button onclick="showTab('espace-parents', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">👨‍👩‍👧‍👦 Espace Parents</button>
-          <button onclick="showTab('espace-personnel-scolaire', this)" class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">👩‍🏫 Espace personnel scolaire</button>
+
+      <!-- NAV avec ARIA -->
+      <nav class="pb-6" role="navigation" aria-label="Sections">
+        <div class="flex flex-wrap gap-3" role="tablist">
+          <button type="button" id="tab-presentation" role="tab" aria-controls="presentation"
+                  aria-selected="true"
+                  onclick="showTab('presentation', this)"
+                  class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            🏠 Présentation
+          </button>
+          <button type="button" id="tab-projet-educatif" role="tab" aria-controls="projet-educatif"
+                  aria-selected="false"
+                  onclick="showTab('projet-educatif', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            📚 Projet Éducatif
+          </button>
+          <button type="button" id="tab-documentation" role="tab" aria-controls="documentation"
+                  aria-selected="false"
+                  onclick="showTab('documentation', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            📄 Documentation
+          </button>
+          <button type="button" id="tab-projets" role="tab" aria-controls="projets"
+                  aria-selected="false"
+                  onclick="showTab('projets', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            🎨 Projets
+          </button>
+          <button type="button" id="tab-nous-joindre" role="tab" aria-controls="nous-joindre"
+                  aria-selected="false"
+                  onclick="showTab('nous-joindre', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            📞 Nous joindre
+          </button>
+          <button type="button" id="tab-espace-parents" role="tab" aria-controls="espace-parents"
+                  aria-selected="false"
+                  onclick="showTab('espace-parents', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            👨‍👩‍👧‍👦 Espace Parents
+          </button>
+          <button type="button" id="tab-espace-personnel-scolaire" role="tab" aria-controls="espace-personnel-scolaire"
+                  aria-selected="false"
+                  onclick="showTab('espace-personnel-scolaire', this)"
+                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+            👩‍🏫 Espace personnel scolaire
+          </button>
         </div>
       </nav>
     </div>
@@ -69,150 +115,163 @@
   <!-- MAIN -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-  <!-- PRÉSENTATION -->
-<div id="presentation" class="tab-content active space-y-12">
-  <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
-  <div class="p-12 text-center text-white">
-    <h2 class="text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
-    
-    <p class="text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
-      Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
-    </p>
-    
-    <p class="text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
-      Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
-    </p>
-    
-    <p class="text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
-      La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
-    </p>
-  </div>
-</section>
+    <!-- PRÉSENTATION -->
+    <div id="presentation" class="tab-content active space-y-12"
+         role="tabpanel" aria-labelledby="tab-presentation">
 
-  <!-- À propos -->
-  <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-    <div class="text-center mb-8">
-      <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
-    </div>
-    <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
+      <!-- HERO avec image à gauche + texte à droite -->
+      <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
+        <div class="p-8 md:p-12 text-white">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Photo à gauche -->
+            <div>
+              <img src="main.jpeg" alt="École Alternative La Chrysalide — vie scolaire"
+                   class="w-full h-64 md:h-[360px] object-cover rounded-2xl shadow-xl bg-white/10 border border-white/20"/>
+            </div>
+            <!-- Texte à droite -->
+            <div class="text-center md:text-left">
+              <h2 class="text-4xl md:text-5xl font-bold mb-6">Bienvenue à La Chrysalide</h2>
 
-      <!-- Mission -->
-      <div>
-        <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
-        <p class="text-lg text-gray-700">
-          Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.
-        </p>
-      </div>
+              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed">
+                Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
+              </p>
 
-      <!-- Vision -->
-      <div>
-        <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
-        <p class="text-lg text-gray-700">
-          Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.
-        </p>
-      </div>
+              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed mt-4">
+                Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
+              </p>
 
-      <!-- Valeurs + PARC -->
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
-          <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
-          <ul class="list-disc list-inside text-gray-700 space-y-2">
-            <li><strong>Plaisir :</strong> moteur essentiel de l'apprentissage; il stimule curiosité, engagement et motivation intrinsèque.</li>
-            <li><strong>Autonomie :</strong> encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
-            <li><strong>Respect :</strong> respect des autres, de soi et de l'environnement.</li>
-            <li><strong>Coopération :</strong> bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
-          </ul>
+              <p class="text-base md:text-lg text-white/90 max-w-3xl leading-relaxed mt-4">
+                La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- À propos -->
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+        <div class="text-center mb-8">
+          <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
+        </div>
+        <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
+
+          <!-- Mission -->
+          <div>
+            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
+            <p class="text-lg text-gray-700">
+              Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.
+            </p>
+          </div>
+
+          <!-- Vision -->
+          <div>
+            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
+            <p class="text-lg text-gray-700">
+              Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.
+            </p>
+          </div>
+
+          <!-- Valeurs + PARC -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+              <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li><strong>Plaisir :</strong> moteur essentiel de l'apprentissage; il stimule curiosité, engagement et motivation intrinsèque.</li>
+                <li><strong>Autonomie :</strong> encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
+                <li><strong>Respect :</strong> respect des autres, de soi et de l'environnement.</li>
+                <li><strong>Coopération :</strong> bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
+              </ul>
+            </div>
+
+            <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
+              <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
+              <p class="text-gray-700">
+                PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir.
+                Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Membres du personnel -->
+      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
         </div>
 
-        <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
-          <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
-          <p class="text-gray-700">
-            PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir.
-            Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.
-          </p>
+        <!-- Direction -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Direction</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+              <p class="text-lg font-semibold text-nature-green">Marie-Claude Cantin</p>
+              <p class="text-gray-600">Direction</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Membres du personnel -->
-  <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-    <div class="text-center mb-10">
-      <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
-    </div>
-
-    <!-- Direction -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Direction</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
-          <p class="text-lg font-semibold text-nature-green">Marie-Claude Cantin</p>
-          <p class="text-gray-600">Direction</p>
+        <!-- Enseignantes -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">1re-2e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">2e-3e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">4e-5e année</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Maternelles (20%)</p></div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Enseignantes -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">1re-2e année</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">2e-3e année</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">4e-5e année</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Maternelles (20%)</p></div>
-      </div>
-    </div>
+        <!-- Spécialistes -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Anglais</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Éducation physique</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Danse</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Art dramatique</p></div>
+          </div>
+        </div>
 
-    <!-- Spécialistes -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Anglais</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Éducation physique</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Danse</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Art dramatique</p></div>
-      </div>
-    </div>
+        <!-- Soutien -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Soutien</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Claire Larouche</p><p class="text-gray-600">TES</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sylvie Pronovost</p><p class="text-gray-600">Secrétaire</p></div>
+          </div>
+        </div>
 
-    <!-- Soutien -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Soutien</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Claire Larouche</p><p class="text-gray-600">TES</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sylvie Pronovost</p><p class="text-gray-600">Secrétaire</p></div>
-      </div>
-    </div>
+        <!-- Professionnelles -->
+        <div class="mb-8">
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Professionnelles</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lennie Roy</p><p class="text-gray-600">Orthophoniste</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Véronique Charette</p><p class="text-gray-600">Orthopédagogue</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Érika Lessard</p><p class="text-gray-600">Travailleuse sociale</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Nathalie Péloquin</p><p class="text-gray-600">Psychoéducatrice</p></div>
+          </div>
+        </div>
 
-    <!-- Professionnelles -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Professionnelles</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lennie Roy</p><p class="text-gray-600">Orthophoniste</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Véronique Charette</p><p class="text-gray-600">Orthopédagogue</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Érika Lessard</p><p class="text-gray-600">Travailleuse sociale</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Nathalie Péloquin</p><p class="text-gray-600">Psychoéducatrice</p></div>
-      </div>
+        <!-- Service de garde -->
+        <div>
+          <h3 class="text-2xl font-bold text-nature-green mb-4">Service de garde</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Mélanie Bérubé</p><p class="text-gray-600">Responsable</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Madelaine Gervais</p><p class="text-gray-600">Éducatrice</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <!-- Service de garde -->
-    <div>
-      <h3 class="text-2xl font-bold text-nature-green mb-4">Service de garde</h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Mélanie Bérubé</p><p class="text-gray-600">Responsable</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Madelaine Gervais</p><p class="text-gray-600">Éducatrice</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-        <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-      </div>
-    </div>
-  </section>
-</div>
-<!-- Fin de la section PRÉSENTATION -->
 
     <!-- PROJET ÉDUCATIF -->
-    <div id="projet-educatif" class="tab-content">
+    <div id="projet-educatif" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-projet-educatif" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-10">
         <div class="text-center">
           <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
@@ -312,7 +371,8 @@
     </div>
 
     <!-- DOCUMENTATION -->
-    <div id="documentation" class="tab-content">
+    <div id="documentation" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-documentation" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-8">
           <h2 class="text-4xl font-bold text-nature-green">Documentation</h2>
@@ -340,7 +400,8 @@
     </div>
 
     <!-- PROJETS -->
-    <div id="projets" class="tab-content">
+    <div id="projets" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-projets" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-8">
         <div class="text-center">
           <h2 class="text-4xl font-bold text-nature-green">Nos Projets</h2>
@@ -370,11 +431,12 @@
     </div>
 
     <!-- NOUS JOINDRE -->
-    <div id="nous-joindre" class="tab-content">
+    <div id="nous-joindre" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-nous-joindre" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <h2 class="text-3xl font-bold text-nature-green mb-6">Nous joindre</h2>
         <div class="space-y-3 text-gray-700">
-          <p>📍 Adresse :796 rue Réal, La Tuque, Québec, G9X 1X5</p>
+          <p>📍 Adresse : 796 rue Réal, La Tuque, Québec, G9X 1X5</p>
           <p>☎️ Téléphone : 819-523-7631</p>
           <p>✉️ Courriel : chrysalide@cssenergie.gouv.qc.ca</p>
         </div>
@@ -382,7 +444,8 @@
     </div>
 
     <!-- ESPACE PARENTS -->
-    <div id="espace-parents" class="tab-content">
+    <div id="espace-parents" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-espace-parents" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-6">
         <div class="text-center mb-4">
           <h2 class="text-4xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
@@ -397,7 +460,8 @@
     </div>
 
     <!-- ESPACE PERSONNEL SCOLAIRE -->
-    <div id="espace-personnel-scolaire" class="tab-content">
+    <div id="espace-personnel-scolaire" class="tab-content"
+         role="tabpanel" aria-labelledby="tab-espace-personnel-scolaire" hidden>
       <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
         <div class="text-center mb-10">
           <h2 class="text-4xl font-bold text-nature-green">👩‍🏫 Espace personnel scolaire</h2>
@@ -445,30 +509,47 @@
     </div>
   </footer>
 
-  <!-- SCRIPT Onglets -->
+  <!-- SCRIPT Onglets : version accessible + URL hash + mémoire locale -->
   <script>
     function showTab(tabName, el){
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.getElementById(tabName)?.classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    el?.classList.add('active');
-    // Mémorise l’onglet choisi
-    localStorage.setItem('activeTab', tabName);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+      // Masquer tous les panneaux
+      document.querySelectorAll('.tab-content').forEach(p => {
+        p.classList.remove('active');
+        p.hidden = true;
+      });
+      // Activer le bon panneau
+      const panel = document.getElementById(tabName);
+      if(panel){
+        panel.classList.add('active');
+        panel.hidden = false;
+        panel.setAttribute('tabindex','-1'); // focus accessible
+        panel.focus({ preventScroll: true });
+      }
+      // Mettre à jour l'état des onglets
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected','false');
+      });
+      if(el){
+        el.classList.add('active');
+        el.setAttribute('aria-selected','true');
+      }
+      // URL partageable + mémoire locale
+      history.replaceState(null, '', '#' + tabName);
+      localStorage.setItem('activeTab', tabName);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-<script>
-  // Ouvre l’onglet indiqué par #hash, sinon le dernier ouvert, sinon "presentation"
-  document.addEventListener('DOMContentLoaded', () => {
-    const hash = location.hash.replace('#','');
-    const saved = localStorage.getItem('activeTab');
-    const target = hash || saved || 'presentation';
-    const btn = [...document.querySelectorAll('.tab-btn')]
-      .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
-    showTab(target, btn);
-  });
-</script>
+    // Ouvrir l'onglet demandé par #hash, sinon le dernier vu, sinon "presentation"
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = location.hash.replace('#','');
+      const saved = localStorage.getItem('activeTab');
+      const target = hash || saved || 'presentation';
+      const btn = [...document.querySelectorAll('.tab-btn')]
+        .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
+      showTab(target, btn);
+    });
+  </script>
 
 </body>
 </html>
