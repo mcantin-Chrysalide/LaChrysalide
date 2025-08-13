@@ -24,101 +24,127 @@
   </script>
 
   <style>
-    .gradient-bg{background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%)}
-    .tab-content{display:none}
-    .tab-content.active{display:block}
-    .tab-btn.active{background-color:#2d5016 !important;color:#fff !important}
-    .hero-section{background:linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%)}
-    .card-hover{transition:all .3s ease}
-    .card-hover:hover{transform:translateY(-5px);box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
-    .nature-card{background:linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%);border:1px solid rgba(135,169,107,.2)}
-    .floating-element{animation:float 6s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    /* Ce qui est nécessaire pour ton header + onglets */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-btn.active { background-color:#2d5016 !important; color:#fff !important; }
 
-    /* Accessibilité : réduire les animations si demandé */
-    @media (prefers-reduced-motion: reduce){
-      .floating-element { animation: none !important; }
-      html:focus-within { scroll-behavior: auto; }
-    }
+    /* Arrière-plan dégradé utilisé sur <body> */
+    .gradient-bg { background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%); }
 
-    /* Justifier le texte des paragraphes */
-    .text-justify { text-align: justify; text-justify: inter-word; }
-    /* Césure auto pour une belle justification (si supporté) */
-    .hyphens-auto { hyphens: auto; }
+    /* Cacher la scrollbar horizontale des onglets */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Laisser un espace pour le header fixe lors des ancrages */
+    html { scroll-padding-top: 72px; }
+    @media (min-width: 640px) { html { scroll-padding-top: 112px; } }
+
+    /* Styles utilisés dans la page (héros, cartes, animation, accessibilité) */
+.hero-section { background: linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%); }
+.card-hover { transition: all .3s ease; }
+.card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
+.nature-card { background: linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%); border:1px solid rgba(135,169,107,.2); }
+.floating-element { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* Accessibilité : réduire les animations si l’usager le demande */
+@media (prefers-reduced-motion: reduce){
+  .floating-element { animation: none !important; }
+  html:focus-within { scroll-behavior: auto; }
+}
+
+/* (si tu les veux) justifier joliment les paragraphes */
+.text-justify { text-align: justify; text-justify: inter-word; }
+.hyphens-auto { hyphens: auto; }
+
   </style>
 
-  <!-- Préchargement de l'image du héros -->
+  <!-- (optionnel) préchargement de l'image principale -->
   <link rel="preload" as="image" href="main.jpg">
 </head>
+
+<!-- Ouvre le body AVANT le header -->
 <body class="gradient-bg min-h-screen">
 
-  <!-- HEADER -->
-  <header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-6">
-        <div class="flex items-center space-x-4">
-          <!-- Logo : place ton fichier 'logo.png' à la racine -->
-          <img src="logo.png" alt="Logo École Alternative La Chrysalide" class="w-16 h-16 rounded-full shadow-lg object-contain bg-cream p-2"/>
-          <div>
-            <h1 class="text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
-              École Alternative La Chrysalide
-            </h1>
-            <p class="text-sage text-sm italic">
-              Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine
-            </p>
-          </div>
+<!-- HEADER compact + responsive -->
+<header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50 transition-transform duration-300 will-change-transform">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Logo + titre -->
+    <div class="flex justify-between items-center py-3 sm:py-6">
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <img src="logo.png" alt="Logo École Alternative La Chrysalide"
+             class="w-10 h-10 sm:w-16 sm:h-16 rounded-full shadow-lg object-contain bg-cream p-1.5 sm:p-2"/>
+        <div>
+          <h1 class="text-xl sm:text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
+            École Alternative La Chrysalide
+          </h1>
+          <p class="hidden sm:block text-sage text-sm italic">
+            Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine
+          </p>
         </div>
       </div>
-
-      <!-- NAV avec ARIA -->
-      <nav class="pb-6" role="navigation" aria-label="Sections">
-        <div class="flex flex-wrap gap-3" role="tablist">
-          <button type="button" id="tab-presentation" role="tab" aria-controls="presentation"
-                  aria-selected="true"
-                  onclick="showTab('presentation', this)"
-                  class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-            🏠 Présentation
-          </button>
-          <button type="button" id="tab-projet-educatif" role="tab" aria-controls="projet-educatif"
-                  aria-selected="false"
-                  onclick="showTab('projet-educatif', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            📚 Projet Éducatif
-          </button>
-          <button type="button" id="tab-documentation" role="tab" aria-controls="documentation"
-                  aria-selected="false"
-                  onclick="showTab('documentation', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            📄 Documentation
-          </button>
-          <button type="button" id="tab-projets" role="tab" aria-controls="projets"
-                  aria-selected="false"
-                  onclick="showTab('projets', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            🎨 Projets
-          </button>
-          <button type="button" id="tab-nous-joindre" role="tab" aria-controls="nous-joindre"
-                  aria-selected="false"
-                  onclick="showTab('nous-joindre', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            📞 Nous joindre
-          </button>
-          <button type="button" id="tab-espace-parents" role="tab" aria-controls="espace-parents"
-                  aria-selected="false"
-                  onclick="showTab('espace-parents', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            👨‍👩‍👧‍👦 Espace Parents
-          </button>
-          <button type="button" id="tab-espace-personnel-scolaire" role="tab" aria-controls="espace-personnel-scolaire"
-                  aria-selected="false"
-                  onclick="showTab('espace-personnel-scolaire', this)"
-                  class="tab-btn bg-white/80 text-nature-green px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-            👩‍🏫 Espace personnel scolaire
-          </button>
-        </div>
-      </nav>
     </div>
-  </header>
+
+    <!-- NAV avec ARIA -->
+    <nav class="pb-3 sm:pb-6" role="navigation" aria-label="Sections">
+      <div class="flex gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-1" role="tablist">
+        
+        <button type="button" id="tab-presentation" role="tab" aria-controls="presentation"
+                aria-selected="true"
+                onclick="showTab('presentation', this)"
+                class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          🏠 Présentation
+        </button>
+
+        <button type="button" id="tab-projet-educatif" role="tab" aria-controls="projet-educatif"
+                aria-selected="false"
+                onclick="showTab('projet-educatif', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          📚 Projet Éducatif
+        </button>
+
+        <button type="button" id="tab-documentation" role="tab" aria-controls="documentation"
+                aria-selected="false"
+                onclick="showTab('documentation', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          📄 Documentation
+        </button>
+
+        <button type="button" id="tab-projets" role="tab" aria-controls="projets"
+                aria-selected="false"
+                onclick="showTab('projets', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          🎨 Projets
+        </button>
+
+        <button type="button" id="tab-nous-joindre" role="tab" aria-controls="nous-joindre"
+                aria-selected="false"
+                onclick="showTab('nous-joindre', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          📞 Nous joindre
+        </button>
+
+        <button type="button" id="tab-espace-parents" role="tab" aria-controls="espace-parents"
+                aria-selected="false"
+                onclick="showTab('espace-parents', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          👨‍👩‍👧‍👦 Espace Parents
+        </button>
+
+        <button type="button" id="tab-espace-personnel-scolaire" role="tab" aria-controls="espace-personnel-scolaire"
+                aria-selected="false"
+                onclick="showTab('espace-personnel-scolaire', this)"
+                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
+          👩‍🏫 Espace personnel scolaire
+        </button>
+
+      </div>
+    </nav>
+
+  </div>
+</header>
 
   <!-- MAIN -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -615,56 +641,86 @@
     </div>
   </footer>
 
-  <!-- SCRIPT Onglets : version accessible + URL hash + mémoire locale -->
-  <script>
-    function showTab(tabName, el){
-      // Masquer tous les panneaux
-      document.querySelectorAll('.tab-content').forEach(p => {
-        p.classList.remove('active');
-        p.hidden = true;
-      });
-      // Activer le bon panneau
-      const panel = document.getElementById(tabName);
-      if(panel){
-        panel.classList.add('active');
-        panel.hidden = false;
-        panel.setAttribute('tabindex','-1'); // focus accessible
-        panel.focus({ preventScroll: true });
-      }
-      // Mettre à jour l'état des onglets
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected','false');
-      });
-      if(el){
-        el.classList.add('active');
-        el.setAttribute('aria-selected','true');
-      }
-      // URL partageable + mémoire locale
-      history.replaceState(null, '', '#' + tabName);
-      localStorage.setItem('activeTab', tabName);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  <!-- SCRIPT Onglets : accessible + hash + mémoire + header auto-hide mobile -->
+<script>
+  function showTab(tabName, el){
+    // Masquer tous les panneaux
+    document.querySelectorAll('.tab-content').forEach(p => {
+      p.classList.remove('active');
+      p.hidden = true;
+    });
+
+    // Activer le bon panneau
+    const panel = document.getElementById(tabName);
+    if(panel){
+      panel.classList.add('active');
+      panel.hidden = false;
+      panel.setAttribute('tabindex','-1');
     }
 
-    // Ouvre l'onglet demandé par #hash, sinon le dernier vu, sinon "presentation"
-    document.addEventListener('DOMContentLoaded', () => {
-      const hash = location.hash.replace('#','');
-      const saved = localStorage.getItem('activeTab');
-      const target = hash || saved || 'presentation';
-      const btn = [...document.querySelectorAll('.tab-btn')]
-        .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
-      showTab(target, btn);
+    // État des boutons
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected','false');
+    });
+    if(el){
+      el.classList.add('active');
+      el.setAttribute('aria-selected','true');
+    }
 
-      // Si on arrive avec #presence-ecole, ouvrir automatiquement le <details>
-      const openPresenceIfHash = () => {
-        if (location.hash.replace('#','') === 'presence-ecole') {
-          document.querySelector('#presence-ecole details')?.setAttribute('open','');
+    // URL + mémoire
+    history.replaceState(null, '', '#' + tabName);
+    localStorage.setItem('activeTab', tabName);
+
+    // --- Améliorations mobile ---
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+
+    // 1) Amener le contenu en vue (évite de rester bloqué sous le header)
+    if (main) {
+      main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 2) Sur petit écran, faire remonter le header après le clic
+    if (window.innerWidth < 768 && header) {
+      // cacher le header (nécessite transition + will-change sur le header)
+      header.classList.add('-translate-y-full');
+
+      // Le ré-afficher dès que l’utilisateur remonte un peu
+      let lastY = window.scrollY;
+      const onScroll = () => {
+        const y = window.scrollY;
+        const scrollingUp = y < lastY - 4; // marge anti-bruit
+        lastY = y;
+        if (scrollingUp || y <= 0) {
+          header.classList.remove('-translate-y-full');
+          window.removeEventListener('scroll', onScroll);
         }
       };
-      openPresenceIfHash();
-      window.addEventListener('hashchange', openPresenceIfHash);
-    });
-  </script>
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+
+  // Ouvre l'onglet demandé par #hash, sinon le dernier vu, sinon "presentation"
+  document.addEventListener('DOMContentLoaded', () => {
+    const hash = location.hash.replace('#','');
+    const saved = localStorage.getItem('activeTab');
+    const target = hash || saved || 'presentation';
+    const btn = [...document.querySelectorAll('.tab-btn')]
+      .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
+    showTab(target, btn);
+
+    // Si on arrive avec #presence-ecole, ouvrir automatiquement le <details>
+    const openPresenceIfHash = () => {
+      if (location.hash.replace('#','') === 'presence-ecole') {
+        document.querySelector('#presence-ecole details')?.setAttribute('open','');
+      }
+    };
+    openPresenceIfHash();
+    window.addEventListener('hashchange', openPresenceIfHash);
+  });
+</script>
+
 
   <!-- SCRIPT Formulaire 'Nous écrire' -> mailto -->
   <script>
