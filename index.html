@@ -24,673 +24,457 @@
   </script>
 
   <style>
-    /* Ce qui est nécessaire pour ton header + onglets */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .tab-btn.active { background-color:#2d5016 !important; color:#fff !important; }
 
-    /* Arrière-plan dégradé utilisé sur <body> */
     .gradient-bg { background:linear-gradient(135deg,#f5e6d3 0%,#faf7f2 50%,#a4c3a2 100%); }
 
-    /* Cacher la scrollbar horizontale des onglets */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Laisser un espace pour le header fixe lors des ancrages */
     html { scroll-padding-top: 72px; }
     @media (min-width: 640px) { html { scroll-padding-top: 112px; } }
 
-    /* Styles utilisés dans la page (héros, cartes, animation, accessibilité) */
-.hero-section { background: linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%); }
-.card-hover { transition: all .3s ease; }
-.card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
-.nature-card { background: linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%); border:1px solid rgba(135,169,107,.2); }
-.floating-element { animation: float 6s ease-in-out infinite; }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .hero-section { background: linear-gradient(135deg,#2d5016 0%, #87a96b 50%, #a4c3a2 100%); }
+    .card-hover { transition: all .3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
+    .nature-card { background: linear-gradient(135deg,rgba(135,169,107,.1) 0%,rgba(164,195,162,.1) 100%); border:1px solid rgba(135,169,107,.2); }
+    .floating-element { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
-/* Accessibilité : réduire les animations si l’usager le demande */
-@media (prefers-reduced-motion: reduce){
-  .floating-element { animation: none !important; }
-  html:focus-within { scroll-behavior: auto; }
-}
+    @media (prefers-reduced-motion: reduce){ .floating-element { animation: none !important; } html:focus-within { scroll-behavior: auto; } }
 
-/* (si tu les veux) justifier joliment les paragraphes */
-.text-justify { text-align: justify; text-justify: inter-word; }
-.hyphens-auto { hyphens: auto; }
-
+    .text-justify { text-align: justify; text-justify: inter-word; }
+    .hyphens-auto { hyphens: auto; }
   </style>
 
-  <!-- (optionnel) préchargement de l'image principale -->
   <link rel="preload" as="image" href="main.jpg">
 </head>
 
-<!-- Ouvre le body AVANT le header -->
 <body class="gradient-bg min-h-screen">
 
-<!-- HEADER compact + responsive -->
 <header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50 transition-transform duration-300 will-change-transform">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Logo + titre -->
     <div class="flex justify-between items-center py-3 sm:py-6">
       <div class="flex items-center space-x-3 sm:space-x-4">
-        <img src="logo.png" alt="Logo École Alternative La Chrysalide"
-             class="w-10 h-10 sm:w-16 sm:h-16 rounded-full shadow-lg object-contain bg-cream p-1.5 sm:p-2"/>
+        <img src="logo.png" alt="Logo École Alternative La Chrysalide" class="w-10 h-10 sm:w-16 sm:h-16 rounded-full shadow-lg object-contain bg-cream p-1.5 sm:p-2"/>
         <div>
-          <h1 class="text-xl sm:text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">
-            École Alternative La Chrysalide
-          </h1>
-          <p class="hidden sm:block text-sage text-sm italic">
-            Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine
-          </p>
+          <h1 class="text-xl sm:text-3xl font-bold bg-gradient-to-r from-nature-green to-sage bg-clip-text text-transparent">École Alternative La Chrysalide</h1>
+          <p class="hidden sm:block text-sage text-sm italic">Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine</p>
         </div>
       </div>
     </div>
 
-    <!-- NAV avec ARIA -->
+    <!-- NAV: Nous joindre placé EN DERNIER dans le ruban -->
     <nav class="pb-3 sm:pb-6" role="navigation" aria-label="Sections">
       <div class="flex gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-1" role="tablist">
-        
-        <button type="button" id="tab-presentation" role="tab" aria-controls="presentation"
-                aria-selected="true"
-                onclick="showTab('presentation', this)"
-                class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-          🏠 Présentation
-        </button>
-
-        <button type="button" id="tab-projet-educatif" role="tab" aria-controls="projet-educatif"
-                aria-selected="false"
-                onclick="showTab('projet-educatif', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          📚 Projet Éducatif
-        </button>
-
-        <button type="button" id="tab-documentation" role="tab" aria-controls="documentation"
-                aria-selected="false"
-                onclick="showTab('documentation', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          📄 Documentation
-        </button>
-
-        <button type="button" id="tab-projets" role="tab" aria-controls="projets"
-                aria-selected="false"
-                onclick="showTab('projets', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          🎨 Projets
-        </button>
-
-        <button type="button" id="tab-nous-joindre" role="tab" aria-controls="nous-joindre"
-                aria-selected="false"
-                onclick="showTab('nous-joindre', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          📞 Nous joindre
-        </button>
-
-        <button type="button" id="tab-espace-parents" role="tab" aria-controls="espace-parents"
-                aria-selected="false"
-                onclick="showTab('espace-parents', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          👨‍👩‍👧‍👦 Espace Parents
-        </button>
-
-        <button type="button" id="tab-espace-personnel-scolaire" role="tab" aria-controls="espace-personnel-scolaire"
-                aria-selected="false"
-                onclick="showTab('espace-personnel-scolaire', this)"
-                class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">
-          👩‍🏫 Espace personnel scolaire
-        </button>
-
+        <button type="button" id="tab-presentation" role="tab" aria-controls="presentation" aria-selected="true" onclick="showTab('presentation', this)" class="tab-btn active bg-gradient-to-r from-nature-green to-sage text-white text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">🏠 Présentation</button>
+        <button type="button" id="tab-projet-educatif" role="tab" aria-controls="projet-educatif" aria-selected="false" onclick="showTab('projet-educatif', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📚 Projet Éducatif</button>
+        <button type="button" id="tab-documentation" role="tab" aria-controls="documentation" aria-selected="false" onclick="showTab('documentation', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📄 Documentation</button>
+        <button type="button" id="tab-projets" role="tab" aria-controls="projets" aria-selected="false" onclick="showTab('projets', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">🎨 Projets</button>
+        <button type="button" id="tab-espace-parents" role="tab" aria-controls="espace-parents" aria-selected="false" onclick="showTab('espace-parents', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">👨‍👩‍👧‍👦 Espace Parents</button>
+        <button type="button" id="tab-evenements" role="tab" aria-controls="evenements" aria-selected="false" onclick="showTab('evenements', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">🎉 Événements</button>
+        <button type="button" id="tab-nous-joindre" role="tab" aria-controls="nous-joindre" aria-selected="false" onclick="showTab('nous-joindre', this)" class="tab-btn bg-white/80 text-nature-green text-sm sm:text-base px-5 py-2 sm:px-8 sm:py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-sage/30">📞 Nous joindre</button>
       </div>
     </nav>
-
   </div>
 </header>
 
-  <!-- MAIN -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-    <!-- PRÉSENTATION -->
-    <div id="presentation" class="tab-content active space-y-12"
-         role="tabpanel" aria-labelledby="tab-presentation">
-
-      <!-- HERO : image à gauche + colonne texte (petit + justifié) à droite -->
-      <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
-        <div class="p-8 md:p-12 text-white">
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <!-- Photo à gauche -->
-            <div>
-              <img
-                src="main.jpg"
-                alt="École Alternative La Chrysalide — vie scolaire"
-                width="1200" height="800"
-                loading="eager" decoding="async"
-                class="w-full h-64 md:h-[360px] object-cover object-[left_center] rounded-2xl shadow-xl bg-white/10 border border-white/20"
-                onerror="this.onerror=null; this.src='logo.png'; this.alt='Image indisponible — logo affiché';"
-              />
-            </div>
-            <!-- Texte à droite, aligné et justifié -->
-            <div class="md:pl-2">
-              <!-- Colonne : Titre + Paragraphes alignés sur la même marge -->
-              <div class="max-w-xl md:max-w-lg mx-auto md:mx-0">
-                <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-3">
-                  Bienvenue à La Chrysalide
-                </h2>
-
-                <div class="space-y-3 text-white/90 text-sm md:text-base leading-relaxed md:leading-normal text-justify hyphens-auto">
-                  <p>
-                    Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.
-                  </p>
-                  <p>
-                    Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.
-                  </p>
-                  <p>
-                    La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.
-                  </p>
-                </div>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- PRÉSENTATION -->
+  <div id="presentation" class="tab-content active space-y-12" role="tabpanel" aria-labelledby="tab-presentation">
+    <section class="hero-section rounded-3xl shadow-2xl overflow-hidden">
+      <div class="p-8 md:p-12 text-white">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img src="main.jpg" alt="École Alternative La Chrysalide — vie scolaire" width="1200" height="800" loading="eager" decoding="async" class="w-full h-64 md:h-[360px] object-cover object-[left_center] rounded-2xl shadow-xl bg-white/10 border border-white/20" onerror="this.onerror=null; this.src='logo.png'; this.alt='Image indisponible — logo affiché';"/>
+          </div>
+          <div class="md:pl-2">
+            <div class="max-w-xl md:max-w-lg mx-auto md:mx-0">
+              <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-3">Bienvenue à La Chrysalide</h2>
+              <div class="space-y-3 text-white/90 text-sm md:text-base leading-relaxed md:leading-normal text-justify hyphens-auto">
+                <p>Nouvellement ouverte depuis août 2024, notre école alternative accueille des élèves de niveau préscolaire et primaire du secteur de La Tuque. Les familles choisissent notre milieu pour sa pédagogie ouverte axée sur le développement global des élèves. Cette approche éducative vise à soutenir le plaisir d'apprendre, l’autonomie, le respect de soi, des autres et du milieu ainsi que la coopération dans un cadre bienveillant et structurant.</p>
+                <p>Située au cœur de la municipalité et à proximité de la nature, les élèves ont accès à une variété de lieux d’apprentissage qui favorisent une pédagogie en mouvement et en plein air. Les enfants sont engagés dans leurs apprentissages afin de devenir des citoyens responsables et impliqués dans leur communauté.</p>
+                <p>La participation des parents et des familles au quotidien enrichit notre environnement scolaire et contribue activement à la coéducation. Ensemble, l’équipe-école, les élèves et les parents œuvrent à créer un milieu d’apprentissage bienveillant, stimulant et créatif où chaque élève peut s'épanouir pleinement.</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- À propos -->
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-8">
-          <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
-        </div>
-        <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
-
-          <!-- Mission -->
-          <div>
-            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
-            <p class="text-lg text-gray-700">
-              Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.
-            </p>
-          </div>
-
-          <!-- Vision -->
-          <div>
-            <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
-            <p class="text-lg text-gray-700">
-              Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.
-            </p>
-          </div>
-
-          <!-- Valeurs + PARC -->
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
-              <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li><strong>Plaisir :</strong> moteur essentiel de l'apprentissage; il stimule curiosité, engagement et motivation intrinsèque.</li>
-                <li><strong>Autonomie :</strong> encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
-                <li><strong>Respect :</strong> respect des autres, de soi et de l'environnement.</li>
-                <li><strong>Coopération :</strong> bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
-              </ul>
-            </div>
-
-            <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
-              <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
-              <p class="text-gray-700">
-                PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir.
-                Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Membres du personnel -->
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-10">
-          <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
-        </div>
-
-        <!-- Direction -->
-        <div class="mb-8">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Direction</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
-              <p class="text-lg font-semibold text-nature-green">Marie-Claude Cantin</p>
-              <p class="text-gray-600">Direction</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Enseignantes -->
-        <div class="mb-8">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">1re-2e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">2e-3e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">4e-5e année</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Maternelles (20%)</p></div>
-          </div>
-        </div>
-
-        <!-- Spécialistes -->
-        <div class="mb-8">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Anglais</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Éducation physique</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Danse</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Art dramatique</p></div>
-          </div>
-        </div>
-
-        <!-- Soutien -->
-        <div class="mb-8">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Soutien</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Claire Larouche</p><p class="text-gray-600">TES</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sylvie Pronovost</p><p class="text-gray-600">Secrétaire</p></div>
-          </div>
-        </div>
-
-        <!-- Professionnelles -->
-        <div class="mb-8">
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Professionnelles</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lennie Roy</p><p class="text-gray-600">Orthophoniste</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Véronique Charette</p><p class="text-gray-600">Orthopédagogue</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Érika Lessard</p><p class="text-gray-600">Travailleuse sociale</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Nathalie Péloquin</p><p class="text-gray-600">Psychoéducatrice</p></div>
-          </div>
-        </div>
-
-        <!-- Service de garde -->
-        <div>
-          <h3 class="text-2xl font-bold text-nature-green mb-4">Service de garde</h3>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Mélanie Bérubé</p><p class="text-gray-600">Responsable</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Madelaine Gervais</p><p class="text-gray-600">Éducatrice</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-            <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- PROJET ÉDUCATIF -->
-    <div id="projet-educatif" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-projet-educatif" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-10">
-        <div class="text-center">
-          <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
-          <p class="text-gray-600">Orientations, objectifs, indicateurs et pistes d’action pour notre école.</p>
-        </div>
-
-        <!-- Orientation 1 -->
-        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
-          <h3 class="text-2xl font-bold text-nature-green mb-2">🌱 Orientation 1</h3>
-          <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser l’apprentissage des élèves</p>
-          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en place des pratiques pédagogiques favorisant l'apprentissage actif des élèves dans la totalité des classes.</p>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>1.1 — 100% des enseignants utiliseront des stratégies d’apprentissage actif.</li>
-                <li>1.2 — 100% des élèves mèneront à terme divers projets (personnels, de groupe, entrepreneuriaux).</li>
-              </ul>
-            </div>
-            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Utilisation de la triangulation pour évaluer.</li>
-                <li>Formation des enseignants.</li>
-                <li>Autoévaluation par les élèves.</li>
-                <li>Rencontres collaboratives.</li>
-                <li>Temps de planification pour les enseignants.</li>
-                <li>Offrir des choix d’activités variés.</li>
-                <li>Enseignement de stratégies aux élèves.</li>
-                <li>Modelage de projets collectifs.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Orientation 2 -->
-        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-light-green">
-          <h3 class="text-2xl font-bold text-nature-green mb-2">🌿 Orientation 2</h3>
-          <p class="text-lg font-semibold text-gray-800 mb-4">Assurer aux élèves et au personnel un milieu de vie sain et bienveillant</p>
-          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, renforcer les habiletés socio-émotionnelles de l'ensemble des élèves.</p>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>2.1 — Moyens enseignés pour favoriser l'autorégulation émotionnelle des élèves.</li>
-                <li>2.2 — Moyens préventifs pour diffuser, enseigner et appliquer le code de vie.</li>
-              </ul>
-            </div>
-            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Enseignement explicite des habiletés sociales et émotionnelles.</li>
-                <li>Enseigner des moyens d’autorégulation.</li>
-                <li>Favoriser le partenariat école-maison.</li>
-                <li>Formation du personnel.</li>
-                <li>Maintenir le conseil de famille.</li>
-                <li>Mise en place d’une démarche de résolution de conflits commune.</li>
-                <li>Ateliers par des organismes.</li>
-                <li>Utilisation de l’application Moozoom.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Orientation 3 -->
-        <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-sage">
-          <h3 class="text-2xl font-bold text-nature-green mb-2">🌳 Orientation 3</h3>
-          <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser la participation des parents à la vie de l'école</p>
-          <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en pratique les principes de la coéducation dans l'école.</p>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>3.1 — 100% des parents participent activement à la vie de l'école (20 heures par famille minimum).</li>
-              </ul>
-            </div>
-            <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
-              <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Outils de suivi de la participation parentale.</li>
-                <li>Système de communication clair et efficace.</li>
-                <li>Banque de talents, ressources et intérêts.</li>
-                <li>Création d’un comité de coéducation.</li>
-                <li>Participation aux PM alternatifs.</li>
-                <li>Rencontre d’accueil des nouvelles familles.</li>
-                <li>Instaurer une culture d’accueil.</li>
-                <li>Définir les rôles des différents acteurs.</li>
-                <li>Maintien des comités existants.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- DOCUMENTATION -->
-    <div id="documentation" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-documentation" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-8">
-          <h2 class="text-4xl font-bold text-nature-green">Documentation</h2>
-          <p class="text-gray-600">Accès direct aux documents clés de l’école.</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-          <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EabI18rBOXZCm9fuCHbVROYBYh95v4keRpKmuoJNeNfTLA?e=S5ohmH" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
-            <span class="text-2xl mr-3">📚</span>
-            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Projet éducatif</h3><p class="text-sm text-gray-600">Vision, orientations et objectifs.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EXqQrF5WdGVNmnOlZo3seh8BE2ERnhP67w5VgYQG8k8T9g?e=ckRP9D" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
-            <span class="text-2xl mr-3">👨‍👩‍👧‍👦</span>
-            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Guide de la participation des familles</h3><p class="text-sm text-gray-600">Rôles, responsabilités et collaboration.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EYRpN0f0Ld5IslFdaENRaL8B-yyhQD1zDn5ROAVxZNSOpQ?e=WzaOoF" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
-            <span class="text-2xl mr-3">📝</span>
-            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Code de vie</h3><p class="text-sm text-gray-600">Règles et attentes partagées.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EaG2NW0BVVBHnYSqgDr8ilQBvWyaa-P-rDHbSEP60vOiIQ?e=WS68Ss" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
-            <span class="text-2xl mr-3">🛡️</span>
-            <div><h3 class="text-xl font-semibold text-nature-green mb-1">Plan de lutte</h3><p class="text-sm text-gray-600">Prévention et intervention.</p></div>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <!-- PROJETS -->
-    <div id="projets" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-projets" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-8">
-        <div class="text-center">
-          <h2 class="text-4xl font-bold text-nature-green">Nos Projets</h2>
-        </div>
-
-        <!-- Intro des projets -->
-        <p class="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed">
-          À La Chrysalide, les élèves mènent des projets collectifs (classe/école) et des projets personnels qui donnent du sens aux apprentissages et développent créativité, collaboration et compétences concrètes. En menant un projet du début à la fin, l’élève apprend à planifier, persévérer, résoudre des problèmes et s’adapter aux imprévus — des habiletés essentielles pour la vie. Les projets cultivent aussi la confiance en soi et le plaisir d’apprendre, dans un cadre qui respecte le rythme et les forces de chacun.
-        </p>
-
-        <!-- Boîtes de projets -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white/80 rounded-2xl overflow-hidden shadow card-hover border border-sage/20">
-            <div class="h-44" style="background:linear-gradient(135deg,#2d5016,#87a96b,#a4c3a2)"></div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-nature-green mb-2">🌱 Nom du projet</h3>
-              <p class="text-gray-700 text-sm mb-4">Brève description (activités, apprentissages…)</p>
-              <div class="flex justify-between text-xs">
-                <span class="bg-sage/20 text-sage px-3 py-1 rounded-full">Date / période</span>
-                <span class="text-gray-500">Classe / cycle</span>
-              </div>
-            </div>
-          </div>
-          <!-- duplique ce bloc pour ajouter d'autres projets -->
-        </div>
-      </section>
-    </div>
-
-    <!-- NOUS JOINDRE -->
-    <div id="nous-joindre" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-nous-joindre" hidden>
-      <section class="nature-card rounded-3xl shadow-2xl p-12 card-hover space-y-8">
-        <div class="text-center">
-          <h2 class="text-3xl font-bold text-nature-green">Nous joindre</h2>
-        </div>
-
-        <!-- Coordonnées cliquables -->
-        <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20 space-y-3 text-gray-700">
-          <p>📍 Adresse :
-            <a class="underline"
-               href="https://www.google.com/maps/search/?api=1&query=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5"
-               target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l'adresse dans Google Maps">
-              796 rue Réal, La Tuque, Québec, G9X 1X5
-            </a>
-          </p>
-          <p>☎️ Téléphone : <a class="underline" href="tel:+18195237631" aria-label="Appeler l'école">819-523-7631</a></p>
-          <p>✉️ Courriel : <a class="underline" href="mailto:chrysalide@cssenergie.gouv.qc.ca" aria-label="Envoyer un courriel">chrysalide@cssenergie.gouv.qc.ca</a></p>
-        </div>
-
-        <!-- Mini-carte intégrée -->
-        <div class="bg-white/80 rounded-2xl p-2 shadow border border-sage/20">
-          <iframe
-            title="Carte - École Alternative La Chrysalide"
-            src="https://www.google.com/maps?q=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5&output=embed"
-            class="w-full h-64 rounded-xl"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-
-        <!-- Formulaire 'Nous écrire' -->
-        <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20">
-          <h3 class="text-2xl font-semibold text-nature-green mb-4">Nous écrire</h3>
-
-          <form id="contact-form" class="grid md:grid-cols-2 gap-4" novalidate>
-            <div class="col-span-1">
-              <label for="cf-nom" class="block text-sm text-gray-600 mb-1">Votre nom*</label>
-              <input id="cf-nom" name="nom" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Nom complet" />
-            </div>
-            <div class="col-span-1">
-              <label for="cf-email" class="block text-sm text-gray-600 mb-1">Votre courriel*</label>
-              <input id="cf-email" name="email" required class="w-full rounded-lg border border-sage/30 p-3" type="email" placeholder="adresse@exemple.com" />
-            </div>
-            <div class="col-span-2">
-              <label for="cf-sujet" class="block text-sm text-gray-600 mb-1">Sujet*</label>
-              <input id="cf-sujet" name="sujet" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Sujet de votre message" />
-            </div>
-            <div class="col-span-2">
-              <label for="cf-message" class="block text-sm text-gray-600 mb-1">Message*</label>
-              <textarea id="cf-message" name="message" required class="w-full rounded-lg border border-sage/30 p-3 h-32" placeholder="Votre message..."></textarea>
-            </div>
-            <div class="col-span-2 flex items-center justify-between">
-              <p class="text-xs text-gray-500">* Champs requis</p>
-              <button type="submit" class="bg-gradient-to-r from-nature-green to-sage text-white px-6 py-3 rounded-xl shadow hover:shadow-lg transition">
-                Envoyer
-              </button>
-            </div>
-          </form>
-
-          <p id="cf-feedback" class="mt-3 text-sm text-gray-600 hidden">Ouverture de votre application courriel…</p>
-        </div>
-      </section>
-    </div>
-
-    <!-- ESPACE PARENTS -->
-    <div id="espace-parents" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-espace-parents" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-6">
-        <div class="text-center mb-4">
-          <h2 class="text-4xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
-          <p class="text-gray-600 text-sm">Accès aux documents et au calendrier via Microsoft.</p>
-        </div>
-
-        <!-- Liens rapides -->
-        <div class="space-y-4">
-          <a href="https://outlook.office365.com/owa/calendar/101870cf4fad419f8634d9c811cce3c7@cssenergie.gouv.qc.ca/35611e2acadf4a23aafccd5fe3757cb96000029279478307932/calendar.html" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-nature-green to-sage text-white px-5 py-3 rounded-xl shadow">📅 Calendrier</a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/EnsZBdleeOlOhEPZ7o50rkoBuoIRRLgtu8hkVv-W4OoWVA" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📷 Photos</a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eo3bFMybRxFOnJSZL8eGEJcBryfPzMziWjNEQ4yRGV1NLA?email=pinot14%40hotmail.com&e=co5gL4" target="_blank" rel="noopener" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📋 Ressources Parents</a>
-          <!-- Bouton vers le formulaire de présence (ouvre le bloc + ancre) -->
-          <a href="#presence-ecole"
-             onclick="document.querySelector('#presence-ecole details')?.setAttribute('open','');"
-             class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📝 Présence à l’école</a>
-          <a href="https://forms.office.com/r/MuhA3KnSxU" target="_blank" rel="noopener" class="inline-block text-nature-green underline">Ouvrir dans un nouvel onglet ↗</a>
-        </div>
-
-        <!-- Formulaire intégré (Option B : repliable) -->
-        <div id="presence-ecole" class="bg-white/80 rounded-2xl p-4 shadow border border-sage/20 mt-4 max-w-3xl mx-auto">
-          <details>
-            <summary class="cursor-pointer select-none text-2xl font-semibold text-nature-green">
-              📝 Présence à l’école — ouvrir le formulaire
-            </summary>
-
-            <div class="mt-3 rounded-xl overflow-hidden">
-              <iframe
-                src="https://forms.office.com/r/MuhA3KnSxU?embed=true"
-                frameborder="0" marginwidth="0" marginheight="0"
-                class="w-full rounded-xl"
-                style="border:none; height:480px; max-height:80vh;"
-                allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen
-                title="Formulaire - Présence à l'école">
-              </iframe>
-            </div>
-
-            <p class="text-sm text-gray-500 mt-2">
-              Ou
-              <a href="https://forms.office.com/r/MuhA3KnSxU" target="_blank" rel="noopener" class="underline text-nature-green">
-                l’ouvrir dans un nouvel onglet ↗
-              </a>
-            </p>
-          </details>
-        </div>
-      </section>
-    </div>
-
-    <!-- ESPACE PERSONNEL SCOLAIRE -->
-    <div id="espace-personnel-scolaire" class="tab-content"
-         role="tabpanel" aria-labelledby="tab-espace-personnel-scolaire" hidden>
-      <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
-        <div class="text-center mb-10">
-          <h2 class="text-4xl font-bold text-nature-green">👩‍🏫 Espace personnel scolaire</h2>
-          <p class="text-gray-600 text-sm">Accès contrôlé via Microsoft.</p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/documentation%20utile?csf=1&web=1&e=2FAnU0" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">📁</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Documentations utiles</h3><p class="text-sm text-gray-600">Procédures, modèles, guides internes.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/S%C3%A9curit%C3%A9?csf=1&web=1&e=DDTJTn" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">🛡️</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Sécurité</h3><p class="text-sm text-gray-600">Plans d’urgence, santé-sécurité, formulaires.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:o:/g/personal/mcantin_cssenergie_gouv_qc_ca/EtAZVMEaEqNNlmVy2wqA56wBxJSM7BXtmjs-q-c1UqavQQ?e=X4vqtb" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">📒</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">OneNote de l’école</h3><p class="text-sm text-gray-600">Bloc-notes partagé de l’équipe.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/%C3%89l%C3%A8ves?csf=1&web=1&e=8jLhgO" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">👧👦</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Élèves</h3><p class="text-sm text-gray-600">Ressources pédagogiques, grilles, suivis.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/Conseil%20des%20enseignants?csf=1&web=1&e=UpWgNR"_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">👩‍🏫</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Conseil des enseignants</h3><p class="text-sm text-gray-600">Documents et suivis du conseil.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/Conseil%20de%20famille?csf=1&web=1&e=EKdsLa" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">👨‍👩‍👦</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Conseil de famille</h3><p class="text-sm text-gray-600">Documents et communications.</p></div>
-          </a>
-          <a href="https://csenergieqcca-my.sharepoint.com/:f:/r/personal/mcantin_cssenergie_gouv_qc_ca/Documents/Chrysalide/Site%20%C3%A9cole/Espace%20personnel/Convocation?csf=1&web=1&e=biyS9P" target="_blank" rel="noopener" class="bg-white/80 rounded-2xl p-8 shadow border border-sage/20 card-hover flex items-start">
-            <span class="text-2xl mr-3">📅</span><div><h3 class="text-xl font-semibold text-nature-green mb-1">Convocation</h3><p class="text-sm text-gray-600">Ordres du jour, convocations, PV.</p></div>
-          </a>
-        </div>
-      </section>
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-gradient-to-r from-nature-green via-sage to-light-green text-white py-12 mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4 floating-element">
-          <svg class="w-6 h-6 text-white" fill="currentColor"><path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/></svg>
-        </div>
-        <h3 class="text-2xl font-bold">École Alternative La Chrysalide</h3>
       </div>
-      <p class="text-white/90 mb-4 text-lg">Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine</p>
-      <p class="text-sm text-white/70">© 2024 École Alternative La Chrysalide. Tous droits réservés.</p>
-    </div>
-  </footer>
+    </section>
 
-  <!-- SCRIPT Onglets : accessible + hash + mémoire + header auto-hide mobile -->
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold text-nature-green">À propos de notre école</h2>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-8 shadow space-y-8">
+        <div>
+          <h3 class="text-2xl font-bold text-nature-green mb-2">Notre mission</h3>
+          <p class="text-lg text-gray-700">Former des apprenants engagés dans leurs apprentissages afin qu'ils deviennent des citoyens responsables et impliqués dans leur communauté.</p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold text-nature-green mb-2">Notre vision</h3>
+          <p class="text-lg text-gray-700">Favoriser un environnement bienveillant où le respect, l'autonomie et le plaisir d'apprendre permettent à chaque élève de s'épanouir pleinement.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-sage/10 rounded-xl p-6 border border-sage/30">
+            <h3 class="font-semibold text-nature-green mb-4 text-xl">Nos valeurs</h3>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li><strong>Plaisir :</strong> moteur essentiel de l'apprentissage; il stimule curiosité, engagement et motivation intrinsèque.</li>
+              <li><strong>Autonomie :</strong> encouragement à prendre des décisions et à devenir des apprenants indépendants.</li>
+              <li><strong>Respect :</strong> respect des autres, de soi et de l'environnement.</li>
+              <li><strong>Coopération :</strong> bâtir ensemble un espace où l’écoute est essentielle, où l’entraide soutient l’action et où les choix sont nourris par la diversité des idées.</li>
+            </ul>
+          </div>
+          <div class="bg-light-green/10 rounded-xl p-6 border border-light-green/30">
+            <h3 class="font-semibold text-nature-green mb-4 text-xl">Notre approche PARC</h3>
+            <p class="text-gray-700">PARC évoque un espace vivant, ouvert et naturel, tout comme notre école : un lieu de découvertes, d’exploration, de rencontres, d’autonomie et de plaisir. Un parc, c’est un environnement sécurisant où l’on peut bouger, créer, réfléchir, coopérer et s’émerveiller.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personnel (inchangé) -->
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold text-nature-green">Membres du personnel</h2>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Direction</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover">
+            <p class="text-lg font-semibold text-nature-green">Marie-Claude Cantin</p>
+            <p class="text-gray-600">Direction</p>
+          </div>
+        </div>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Enseignantes</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Émilie Desmarais</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Rosalie Roy</p><p class="text-gray-600">Préscolaire 4-5 ans</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lénnie Boudreault</p><p class="text-gray-600">1re-2e année</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Noëlle Dionne</p><p class="text-gray-600">2e-3e année</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Josée Gauthier Thivierge</p><p class="text-gray-600">4e-5e année</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Jordane Poiré</p><p class="text-gray-600">Maternelles (20%)</p></div>
+        </div>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Spécialistes</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Paula Hernandez Albarillo</p><p class="text-gray-600">Anglais</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Boulianne</p><p class="text-gray-600">Éducation physique</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sophie Gervais Doyon</p><p class="text-gray-600">Danse</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Régis Gravel</p><p class="text-gray-600">Art dramatique</p></div>
+        </div>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Soutien</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Marie-Claire Larouche</p><p class="text-gray-600">TES</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Sylvie Pronovost</p><p class="text-gray-600">Secrétaire</p></div>
+        </div>
+      </div>
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Professionnelles</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Lennie Roy</p><p class="text-gray-600">Orthophoniste</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Véronique Charette</p><p class="text-gray-600">Orthopédagogue</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Érika Lessard</p><p class="text-gray-600">Travailleuse sociale</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Nathalie Péloquin</p><p class="text-gray-600">Psychoéducatrice</p></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-nature-green mb-4">Service de garde</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Mélanie Bérubé</p><p class="text-gray-600">Responsable</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">Madelaine Gervais</p><p class="text-gray-600">Éducatrice</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+          <div class="bg-white/85 rounded-2xl p-6 shadow border border-sage/20 card-hover"><p class="text-lg font-semibold text-nature-green">À venir</p><p class="text-gray-600">Éducatrice</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROJET ÉDUCATIF (inchangé) -->
+  <div id="projet-educatif" class="tab-content" role="tabpanel" aria-labelledby="tab-projet-educatif" hidden>
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-10">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-nature-green">Notre Projet Éducatif</h2>
+        <p class="text-gray-600">Orientations, objectifs, indicateurs et pistes d’action pour notre école.</p>
+      </div>
+      <!-- … contenu identique à ta version précédente … -->
+      <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-nature-green">
+        <h3 class="text-2xl font-bold text-nature-green mb-2">🌱 Orientation 1</h3>
+        <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser l’apprentissage des élèves</p>
+        <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en place des pratiques pédagogiques favorisant l'apprentissage actif des élèves dans la totalité des classes.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>1.1 — 100% des enseignants utiliseront des stratégies d’apprentissage actif.</li>
+              <li>1.2 — 100% des élèves mèneront à terme divers projets (personnels, de groupe, entrepreneuriaux).</li>
+            </ul>
+          </div>
+          <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>Utilisation de la triangulation pour évaluer.</li>
+              <li>Formation des enseignants.</li>
+              <li>Autoévaluation par les élèves.</li>
+              <li>Rencontres collaboratives.</li>
+              <li>Temps de planification pour les enseignants.</li>
+              <li>Offrir des choix d’activités variés.</li>
+              <li>Enseignement de stratégies aux élèves.</li>
+              <li>Modelage de projets collectifs.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-light-green">
+        <h3 class="text-2xl font-bold text-nature-green mb-2">🌿 Orientation 2</h3>
+        <p class="text-lg font-semibold text-gray-800 mb-4">Assurer aux élèves et au personnel un milieu de vie sain et bienveillant</p>
+        <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, renforcer les habiletés socio-émotionnelles de l'ensemble des élèves.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>2.1 — Moyens enseignés pour favoriser l'autorégulation émotionnelle des élèves.</li>
+              <li>2.2 — Moyens préventifs pour diffuser, enseigner et appliquer le code de vie.</li>
+            </ul>
+          </div>
+          <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>Enseignement explicite des habiletés sociales et émotionnelles.</li>
+              <li>Enseigner des moyens d’autorégulation.</li>
+              <li>Favoriser le partenariat école-maison.</li>
+              <li>Formation du personnel.</li>
+              <li>Maintenir le conseil de famille.</li>
+              <li>Mise en place d’une démarche de résolution de conflits commune.</li>
+              <li>Ateliers par des organismes.</li>
+              <li>Utilisation de l’application Moozoom.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-8 shadow border-l-8 border-sage">
+        <h3 class="text-2xl font-bold text-nature-green mb-2">🌳 Orientation 3</h3>
+        <p class="text-lg font-semibold text-gray-800 mb-4">Favoriser la participation des parents à la vie de l'école</p>
+        <p class="mb-4 text-gray-700"><strong>Objectif :</strong> D'ici 2027, mettre en pratique les principes de la coéducation dans l'école.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-sage/10 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Indicateurs</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>3.1 — 100% des parents participent activement à la vie de l'école (20 heures par famille minimum).</li>
+            </ul>
+          </div>
+          <div class="bg-warm-beige/40 p-6 border border-sage/30 rounded-xl">
+            <h4 class="font-semibold text-nature-green mb-3">Pistes d’action</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+              <li>Outils de suivi de la participation parentale.</li>
+              <li>Système de communication clair et efficace.</li>
+              <li>Banque de talents, ressources et intérêts.</li>
+              <li>Création d’un comité de coéducation.</li>
+              <li>Participation aux PM alternatifs.</li>
+              <li>Rencontre d’accueil des nouvelles familles.</li>
+              <li>Instaurer une culture d’accueil.</li>
+              <li>Définir les rôles des différents acteurs.</li>
+              <li>Maintien des comités existants.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- DOCUMENTATION avec menu Plan de lutte (Résumé d'abord) -->
+  <div id="documentation" class="tab-content" role="tabpanel" aria-labelledby="tab-documentation" hidden>
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold text-nature-green">Documentation</h2>
+        <p class="text-gray-600">Accès direct aux documents clés de l’école.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EabI18rBOXZCm9fuCHbVROYBYh95v4keRpKmuoJNeNfTLA?e=S5ohmH" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+          <span class="text-2xl mr-3">📚</span>
+          <div><h3 class="text-xl font-semibold text-nature-green mb-1">Projet éducatif</h3><p class="text-sm text-gray-600">Vision, orientations et objectifs.</p></div>
+        </a>
+        <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EXqQrF5WdGVNmnOlZo3seh8BE2ERnhP67w5VgYQG8k8T9g?e=ckRP9D" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+          <span class="text-2xl mr-3">👨‍👩‍👧‍👦</span>
+          <div><h3 class="text-xl font-semibold text-nature-green mb-1">Guide de la participation des familles</h3><p class="text-sm text-gray-600">Rôles, responsabilités et collaboration.</p></div>
+        </a>
+        <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EYRpN0f0Ld5IslFdaENRaL8B-yyhQD1zDn5ROAVxZNSOpQ?e=WzaOoF" target="_blank" rel="noopener" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+          <span class="text-2xl mr-3">📝</span>
+          <div><h3 class="text-xl font-semibold text-nature-green mb-1">Code de vie</h3><p class="text-sm text-gray-600">Règles et attentes partagées.</p></div>
+        </a>
+
+        <!-- Carte Plan de lutte -> ouvre un petit menu de choix -->
+        <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-sage/20 hover:shadow-xl card-hover flex items-start">
+          <span class="text-2xl mr-3">🛡️</span>
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold text-nature-green mb-1">Plan de lutte</h3>
+            <p class="text-sm text-gray-600 mb-3">Prévention et intervention.</p>
+            <button type="button" class="px-4 py-2 rounded-lg bg-gradient-to-r from-nature-green to-sage text-white shadow" onclick="togglePlanMenu(this)">Choisir un document ▾</button>
+          </div>
+
+          <div class="plan-menu absolute right-4 top-20 bg-white rounded-xl border border-sage/30 shadow-xl w-72 hidden" role="menu" aria-label="Choisir la version du plan de lutte">
+            <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EfjwYyVuWBBHt2oTcmfZPoUBd-Q-ES4lhDvjUxzXilTKWQ?e=qHGBHI" target="_blank" rel="noopener" class="block px-4 py-3 hover:bg-sage/10" role="menuitem">📄 Résumé du plan de lutte (recommandé)</a
+            <a href="https://csenergieqcca-my.sharepoint.com/:b:/g/personal/mcantin_cssenergie_gouv_qc_ca/EaG2NW0BVVBHnYSqgDr8ilQBvWyaa-P-rDHbSEP60vOiIQ?e=WS68Ss" target="_blank" rel="noopener" class="block px-4 py-3 hover:bg-sage/10" role="menuitem">📘 Plan de lutte (version complète)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROJETS (inchangé) -->
+  <div id="projets" class="tab-content" role="tabpanel" aria-labelledby="tab-projets" hidden>
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-8">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-nature-green">Nos Projets</h2>
+      </div>
+      <p class="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed">À La Chrysalide, les élèves mènent des projets collectifs (classe/école) et des projets personnels qui donnent du sens aux apprentissages et développent créativité, collaboration et compétences concrètes…</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/80 rounded-2xl overflow-hidden shadow card-hover border border-sage/20">
+          <div class="h-44" style="background:linear-gradient(135deg,#2d5016,#87a96b,#a4c3a2)"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-nature-green mb-2">🌱 Nom du projet</h3>
+            <p class="text-gray-700 text-sm mb-4">Brève description (activités, apprentissages…)</p>
+            <div class="flex justify-between text-xs"><span class="bg-sage/20 text-sage px-3 py-1 rounded-full">Date / période</span><span class="text-gray-500">Classe / cycle</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- NOUS JOINDRE (placé en dernier dans l’onglet) -->
+  <div id="nous-joindre" class="tab-content" role="tabpanel" aria-labelledby="tab-nous-joindre" hidden>
+    <section class="nature-card rounded-3xl shadow-2xl p-12 card-hover space-y-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-nature-green">Nous joindre</h2>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20 space-y-3 text-gray-700">
+        <p>📍 Adresse :
+          <a class="underline" href="https://www.google.com/maps/search/?api=1&query=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir l'adresse dans Google Maps">796 rue Réal, La Tuque, Québec, G9X 1X5</a>
+        </p>
+        <p>☎️ Téléphone : <a class="underline" href="tel:+18195237631" aria-label="Appeler l'école">819-523-7631</a></p>
+        <p>✉️ Courriel : <a class="underline" href="mailto:chrysalide@cssenergie.gouv.qc.ca" aria-label="Envoyer un courriel">chrysalide@cssenergie.gouv.qc.ca</a></p>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-2 shadow border border-sage/20">
+        <iframe title="Carte - École Alternative La Chrysalide" src="https://www.google.com/maps?q=796+rue+R%C3%A9al,+La+Tuque,+Qu%C3%A9bec,+G9X+1X5&output=embed" class="w-full h-64 rounded-xl" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="bg-white/80 rounded-2xl p-6 shadow border border-sage/20">
+        <h3 class="text-2xl font-semibold text-nature-green mb-4">Nous écrire</h3>
+        <form id="contact-form" class="grid md:grid-cols-2 gap-4" novalidate>
+          <div class="col-span-1">
+            <label for="cf-nom" class="block text-sm text-gray-600 mb-1">Votre nom*</label>
+            <input id="cf-nom" name="nom" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Nom complet" />
+          </div>
+          <div class="col-span-1">
+            <label for="cf-email" class="block text-sm text-gray-600 mb-1">Votre courriel*</label>
+            <input id="cf-email" name="email" required class="w-full rounded-lg border border-sage/30 p-3" type="email" placeholder="adresse@exemple.com" />
+          </div>
+          <div class="col-span-2">
+            <label for="cf-sujet" class="block text-sm text-gray-600 mb-1">Sujet*</label>
+            <input id="cf-sujet" name="sujet" required class="w-full rounded-lg border border-sage/30 p-3" type="text" placeholder="Sujet de votre message" />
+          </div>
+          <div class="col-span-2">
+            <label for="cf-message" class="block text-sm text-gray-600 mb-1">Message*</label>
+            <textarea id="cf-message" name="message" required class="w-full rounded-lg border border-sage/30 p-3 h-32" placeholder="Votre message..."></textarea>
+          </div>
+          <div class="col-span-2 flex items-center justify-between">
+            <p class="text-xs text-gray-500">* Champs requis</p>
+            <button type="submit" class="bg-gradient-to-r from-nature-green to-sage text-white px-6 py-3 rounded-xl shadow hover:shadow-lg transition">Envoyer</button>
+          </div>
+        </form>
+        <p id="cf-feedback" class="mt-3 text-sm text-gray-600 hidden">Ouverture de votre application courriel…</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ESPACE PARENTS (Photos/Ressources retirées) -->
+  <div id="espace-parents" class="tab-content" role="tabpanel" aria-labelledby="tab-espace-parents" hidden>
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-6">
+      <div class="text-center mb-4">
+        <h2 class="text-4xl font-bold text-nature-green">👨‍👩‍👧‍👦 Espace Parents</h2>
+        <p class="text-gray-600 text-sm">Accès au calendrier et formulaires via Microsoft.</p>
+      </div>
+      <div class="space-y-4">
+        <a href="https://outlook.office365.com/owa/calendar/101870cf4fad419f8634d9c811cce3c7@cssenergie.gouv.qc.ca/35611e2acadf4a23aafccd5fe3757cb96000029279478307932/calendar.html" target="_blank" rel="noopener" class="inline-block bg-gradient-to-r from-nature-green to-sage text-white px-5 py-3 rounded-xl shadow">📅 Calendrier</a>
+        <!-- Photos et Ressources Parents retirés -->
+        <a href="#presence-ecole" onclick="document.querySelector('#presence-ecole details')?.setAttribute('open','');" class="inline-block bg-white border border-sage/30 px-5 py-3 rounded-xl shadow">📝 Présence à l’école</a>
+        <a href="https://forms.office.com/r/MuhA3KnSxU" target="_blank" rel="noopener" class="inline-block text-nature-green underline">Ouvrir dans un nouvel onglet ↗</a>
+      </div>
+      <div id="presence-ecole" class="bg-white/80 rounded-2xl p-4 shadow border border-sage/20 mt-4 max-w-3xl mx-auto">
+        <details>
+          <summary class="cursor-pointer select-none text-2xl font-semibold text-nature-green">📝 Présence à l’école — ouvrir le formulaire</summary>
+          <div class="mt-3 rounded-xl overflow-hidden">
+            <iframe src="https://forms.office.com/r/MuhA3KnSxU?embed=true" frameborder="0" marginwidth="0" marginheight="0" class="w-full rounded-xl" style="border:none; height:480px; max-height:80vh;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen title="Formulaire - Présence à l'école"></iframe>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">Ou <a href="https://forms.office.com/r/MuhA3KnSxU" target="_blank" rel="noopener" class="underline text-nature-green">l’ouvrir dans un nouvel onglet ↗</a></p>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- ÉVÉNEMENTS (nouvelle section) -->
+  <div id="evenements" class="tab-content" role="tabpanel" aria-labelledby="tab-evenements" hidden>
+    <section class="nature-card rounded-3xl shadow-xl p-12 card-hover space-y-8">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-nature-green">Événements de l’école</h2>
+        <p class="text-gray-600">Les moments forts de la vie scolaire : description + photo, comme pour nos projets.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Événement 1: Rentrée scolaire 2025-2026 -->
+        <article class="bg-white/80 rounded-2xl overflow-hidden shadow border border-sage/20 card-hover">
+          <img src="https://csenergieqcca-my.sharepoint.com/:i:/g/personal/mcantin_cssenergie_gouv_qc_ca/Eel2-HYDBKdKieJtN4onbA8B3WLYKGcLyJ87u_cSWiCYmw?e=FlDCHn" alt="Rentrée scolaire 2025-2026 – kermesse et épluchette" class="w-full h-44 object-cover" onerror="this.style.display='none'"/>
+          <div class="p-6 space-y-3">
+            <h3 class="text-xl font-semibold text-nature-green">Rentrée scolaire 2025-2026</h3>
+            <p class="text-sm text-gray-700 text-justify">Le 28 août dernier, nous avons eu le bonheur de vivre notre deuxième rentrée scolaire à l’École alternative La Chrysalide. Pour souligner ce moment spécial, des parents ont organisé une kermesse festive qui s’est conclue sur l’heure du dîner par une épluchette de blé d’Inde accompagnée de hot-dogs. Les élèves et leurs parents se sont amusés dans les différentes stations, créant une ambiance remplie de rire, de plaisir, de collaboration et d’esprit familial. Cette matinée festive donne déjà le ton à une année scolaire 2025-2026 vivante et inspirante! Avec notre thème annuel « Curieux de nature », nous sommes prêts à partir à la découverte!</p>
+            <div class="flex justify-between text-xs">
+              <span class="bg-sage/20 text-sage px-3 py-1 rounded-full">28 août 2025</span>
+              <span class="text-gray-500">Toute l’école</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="bg-gradient-to-r from-nature-green via-sage to-light-green text-white py-12 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex items-center justify-center mb-6">
+      <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4 floating-element">
+        <svg class="w-6 h-6 text-white" fill="currentColor"><path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/></svg>
+      </div>
+      <h3 class="text-2xl font-bold">École Alternative La Chrysalide</h3>
+    </div>
+    <p class="text-white/90 mb-4 text-lg">Apprendre autrement, un projet en harmonie avec la nature et la richesse humaine</p>
+    <p class="text-sm text-white/70">© 2024 École Alternative La Chrysalide. Tous droits réservés.</p>
+  </div>
+</footer>
+
 <script>
   function showTab(tabName, el){
-    // Masquer tous les panneaux
-    document.querySelectorAll('.tab-content').forEach(p => {
-      p.classList.remove('active');
-      p.hidden = true;
-    });
-
-    // Activer le bon panneau
+    document.querySelectorAll('.tab-content').forEach(p => { p.classList.remove('active'); p.hidden = true; });
     const panel = document.getElementById(tabName);
-    if(panel){
-      panel.classList.add('active');
-      panel.hidden = false;
-      panel.setAttribute('tabindex','-1');
-    }
-
-    // État des boutons
-    document.querySelectorAll('.tab-btn').forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected','false');
-    });
-    if(el){
-      el.classList.add('active');
-      el.setAttribute('aria-selected','true');
-    }
-
-    // URL + mémoire
+    if(panel){ panel.classList.add('active'); panel.hidden = false; panel.setAttribute('tabindex','-1'); }
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    if(el){ el.classList.add('active'); el.setAttribute('aria-selected','true'); }
     history.replaceState(null, '', '#' + tabName);
     localStorage.setItem('activeTab', tabName);
-
-    // --- Améliorations mobile ---
     const header = document.querySelector('header');
     const main = document.querySelector('main');
-
-    // 1) Amener le contenu en vue (évite de rester bloqué sous le header)
-    if (main) {
-      main.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // 2) Sur petit écran, faire remonter le header après le clic
+    if (main) { main.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     if (window.innerWidth < 768 && header) {
-      // cacher le header (nécessite transition + will-change sur le header)
       header.classList.add('-translate-y-full');
-
-      // Le ré-afficher dès que l’utilisateur remonte un peu
       let lastY = window.scrollY;
       const onScroll = () => {
         const y = window.scrollY;
-        const scrollingUp = y < lastY - 4; // marge anti-bruit
+        const scrollingUp = y < lastY - 4;
         lastY = y;
         if (scrollingUp || y <= 0) {
           header.classList.remove('-translate-y-full');
@@ -701,16 +485,27 @@
     }
   }
 
-  // Ouvre l'onglet demandé par #hash, sinon le dernier vu, sinon "presentation"
+  // Plan de lutte: petit menu
+  function togglePlanMenu(btn){
+    const card = btn.closest('div.relative');
+    const menu = card.querySelector('.plan-menu');
+    const isHidden = menu.classList.contains('hidden');
+    document.querySelectorAll('.plan-menu').forEach(m => m.classList.add('hidden'));
+    if(isHidden){ menu.classList.remove('hidden'); }
+  }
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.plan-menu') && !e.target.closest('button')){
+      document.querySelectorAll('.plan-menu').forEach(m => m.classList.add('hidden'));
+    }
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
     const hash = location.hash.replace('#','');
     const saved = localStorage.getItem('activeTab');
     const target = hash || saved || 'presentation';
-    const btn = [...document.querySelectorAll('.tab-btn')]
-      .find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
+    const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick')?.includes(`'${target}'`));
     showTab(target, btn);
 
-    // Si on arrive avec #presence-ecole, ouvrir automatiquement le <details>
     const openPresenceIfHash = () => {
       if (location.hash.replace('#','') === 'presence-ecole') {
         document.querySelector('#presence-ecole details')?.setAttribute('open','');
@@ -721,38 +516,27 @@
   });
 </script>
 
-
-  <!-- SCRIPT Formulaire 'Nous écrire' -> mailto -->
-  <script>
-    (function(){
-      const form = document.getElementById('contact-form');
-      if(!form) return;
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const nom = document.getElementById('cf-nom').value.trim();
-        const email = document.getElementById('cf-email').value.trim();
-        const sujet = document.getElementById('cf-sujet').value.trim();
-        const message = document.getElementById('cf-message').value.trim();
-
-        if(!nom || !email || !sujet || !message){
-          alert('Merci de remplir tous les champs obligatoires.');
-          return;
-        }
-
-        const to = 'chrysalide@cssenergie.gouv.qc.ca';
-        const subject = `[Site Web] ${sujet} — ${nom}`;
-        const bodyText = `Nom: ${nom}\nCourriel: ${email}\n\n${message}`;
-        const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-
-        // Ouvre le client courriel
-        window.location.href = mailto;
-
-        // Petit feedback visuel
-        const fb = document.getElementById('cf-feedback');
-        if (fb) fb.classList.remove('hidden');
-      });
-    })();
-  </script>
+<script>
+  (function(){
+    const form = document.getElementById('contact-form');
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const nom = document.getElementById('cf-nom').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const sujet = document.getElementById('cf-sujet').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+      if(!nom || !email || !sujet || !message){ alert('Merci de remplir tous les champs obligatoires.'); return; }
+      const to = 'chrysalide@cssenergie.gouv.qc.ca';
+      const subject = `[Site Web] ${sujet} — ${nom}`;
+      const bodyText = `Nom: ${nom}\nCourriel: ${email}\n\n${message}`;
+      const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+      window.location.href = mailto;
+      const fb = document.getElementById('cf-feedback');
+      if (fb) fb.classList.remove('hidden');
+    });
+  })();
+</script>
 
 </body>
 </html>
